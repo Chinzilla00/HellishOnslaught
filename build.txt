@@ -1,0 +1,3 @@
+displayName = Hellish Onslaught
+author = CinnamonEX
+version = 0.1
