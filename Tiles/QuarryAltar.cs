@@ -64,7 +64,7 @@ namespace HellishOnslaught.Tiles
                         WorldEvilFill = false;
                         count = 0;
                         Subworld.Enter<QuarryWorldFile>();
-    }
+                    }
                 }
             }
             if (player.HeldItem.type == ItemID.ShadowScale && !DungeonBoneFill)
