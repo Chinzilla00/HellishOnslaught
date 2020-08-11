@@ -12,7 +12,8 @@ namespace HellishOnslaught.Items
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Emblem of Flight and Happiness");
+            Tooltip.SetDefault("Emblem of Flight and Happiness" +
+                "\nAllows travel to the Flawn Kingdom");
         }
         public override void SetDefaults()
         {

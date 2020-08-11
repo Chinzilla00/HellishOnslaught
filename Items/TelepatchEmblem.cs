@@ -12,7 +12,8 @@ namespace HellishOnslaught.Items
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Emblem of Philosophy and Innovation");
+            Tooltip.SetDefault("Emblem of Philosophy and Innovation" +
+                "\nAllows travel to the Telepatch Kingdom");
         }
         public override void SetDefaults()
         {

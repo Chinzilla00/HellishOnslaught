@@ -12,7 +12,8 @@ namespace HellishOnslaught.Items
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Emblem of Technology and Discovery");
+            Tooltip.SetDefault("Emblem of Technology and Discovery" +
+                "\nAllows travel to the Cybaric Kingdom");
         }
         public override void SetDefaults()
         {

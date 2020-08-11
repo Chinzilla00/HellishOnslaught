@@ -12,7 +12,8 @@ namespace HellishOnslaught.Items
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Emblem of Healing and Peace");
+            Tooltip.SetDefault("Emblem of Healing and Peace" +
+                "\nAllows travel to the Blitzender Kingdom");
         }
         public override void SetDefaults()
         {

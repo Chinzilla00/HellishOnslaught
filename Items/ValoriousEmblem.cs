@@ -12,7 +12,8 @@ namespace HellishOnslaught.Items
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Emblem of Military Expansion and War");
+            Tooltip.SetDefault("Emblem of Military Expansion and War" +
+                "\nAllows travel to the Valorious Kingdom");
         }
         public override void SetDefaults()
         {

@@ -12,7 +12,8 @@ namespace HellishOnslaught.Items
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Emblem of Fate and Dragon Worship");
+            Tooltip.SetDefault("Emblem of Fate and Dragon Worship" +
+                "\nAllows travel to the Dragore Kingdom");
         }
         public override void SetDefaults()
         {

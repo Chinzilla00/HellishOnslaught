@@ -12,7 +12,8 @@ namespace HellishOnslaught.Items
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Emblem of Production and Manufacturing");
+            Tooltip.SetDefault("Emblem of Production and Manufacturing" +
+                "\nAllows travel to the Prodiox Kingdom");
         }
         public override void SetDefaults()
         {
