@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HellishOnslaught.TheQuarry;
+using Microsoft.Xna.Framework;
+using SubworldLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,8 +63,8 @@ namespace HellishOnslaught.Tiles
                     {
                         WorldEvilFill = false;
                         count = 0;
-                        //Boss Spawn
-                    }
+                        Subworld.Enter<QuarryWorldFile>();
+    }
                 }
             }
             if (player.HeldItem.type == ItemID.ShadowScale && !DungeonBoneFill)
@@ -99,7 +101,7 @@ namespace HellishOnslaught.Tiles
                     {
                         DungeonBoneFill = false;
                         count = 0;
-                        //Quarry Warp
+                        
                     }
                 }
             }

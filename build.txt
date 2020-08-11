@@ -1,3 +1,6 @@
 displayName = Hellish Onslaught
 author = CinnamonEX
 version = 0.1
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*
+modReferences = SubworldLibrary
+includePDB = true
