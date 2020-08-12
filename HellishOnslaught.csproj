@@ -17,6 +17,12 @@
     <Reference Include="SubworldLibrary">
       <HintPath>ref\SubworldLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="Terraria">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
+    </Reference>
+    <Reference Include="Terraria">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
+    </Reference>
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="&quot;C:\Program Files (x86)\Steam\steamapps\common\Terraria\tModLoaderServer.exe&quot; -build &quot;$(ProjectDir)\&quot; -eac &quot;$(TargetPath)&quot;" />

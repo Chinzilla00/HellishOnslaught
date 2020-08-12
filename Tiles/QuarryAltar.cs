@@ -63,7 +63,7 @@ namespace HellishOnslaught.Tiles
                     {
                         WorldEvilFill = false;
                         count = 0;
-                        Subworld.Enter<QuarryWorldFile>();
+                        //Boss Spawn
                     }
                 }
             }
@@ -101,7 +101,7 @@ namespace HellishOnslaught.Tiles
                     {
                         DungeonBoneFill = false;
                         count = 0;
-                        
+                        Subworld.Enter<QuarryWorldFile>();
                     }
                 }
             }
