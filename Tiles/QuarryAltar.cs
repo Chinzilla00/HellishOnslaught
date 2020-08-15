@@ -42,5 +42,15 @@ namespace HellishOnslaught.Tiles
         {
             return false;
         }
+        public override bool NewRightClick(int i, int j)
+        {
+            Player player = Main.LocalPlayer;
+            if (player.HeldItem.type == ItemID.Bone && player.HeldItem.stack >= 100)
+            {
+                player.HeldItem.stack -= 100;
+                Subworld.Enter<QuarryWorldFile>();
+            }
+            return true;
+        }
     }
 }

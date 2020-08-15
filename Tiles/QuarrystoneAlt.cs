@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace HellishOnslaught.Tiles
 {
-    public class Quarrystone : ModTile
+    public class QuarrystoneAlt : ModTile
     {
         public override void SetDefaults()
         {
@@ -21,9 +21,16 @@ namespace HellishOnslaught.Tiles
             AddMapEntry(new Color(66, 197, 53), name);
 
             dustType = 84;
-            drop = ModContent.ItemType<QuarrystoneItem>();
             soundType = SoundID.Tink;
             soundStyle = 1;
+        }
+        public override bool CanKillTile(int i, int j, ref bool blockDamaged)
+        {
+            return false;
+        }
+        public override bool CanExplode(int i, int j)
+        {
+            return false;
         }
     }
 }

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace HellishOnslaught
 {
-    public class HellishOnslaught : Mod
+    class HellishOnslaught : Mod
     {
         public static ModHotKey ClanEmblem;
 
