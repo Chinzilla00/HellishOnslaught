@@ -1,4 +1,5 @@
-﻿using SubworldLibrary;
+﻿using HellishOnslaught.Tiles;
+using SubworldLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 using Terraria.World.Generation;
 
 namespace HellishOnslaught.TheQuarry
@@ -17,23 +19,48 @@ namespace HellishOnslaught.TheQuarry
         public override bool saveSubworld => false;
         public override bool disablePlayerSaving => true;
         public override bool saveModData => true;
+        public static bool FirstTime = true;
         public override List<GenPass> tasks => new List<GenPass>()
         {
             new SubworldGenPass(progress =>
             {
-                progress.Message = "Loading"; //Sets the text above the worldgen progress bar
-		    	Main.worldSurface = 0; //Hides the underground layer just out of bounds
-	    		Main.rockLayer = 0; //Hides the cavern layer way out of bounds
-    			for (int i = 0; i < Main.maxTilesX; i++)
+                if (FirstTime)
                 {
-                    for (int j = 0; j < Main.maxTilesY; j++)
+                    progress.Message = "Welcome to the Quarry!";
+                    Main.worldSurface = 0;
+                    Main.rockLayer = 0;
+                    for (int i = 0; i < Main.maxTilesX; i++)
                     {
-                        progress.Set((j + i * Main.maxTilesY) / (float)(Main.maxTilesX * Main.maxTilesY)); //Controls the progress bar, should only be set between 0f and 1f
-					    Main.tile[i, j].active(true);
-                        Main.tile[i, j].type = TileID.Stone;
+                        for (int j = 0; j < Main.maxTilesY; j++)
+                        {
+                            progress.Set((j + i * Main.maxTilesY) / (float)(Main.maxTilesX * Main.maxTilesY)); //Controls the progress bar, should only be set between 0f and 1f
+			                Main.tile[i, j].active(true);
+                            Main.tile[i, j].type = (ushort)(ModContent.TileType<Quarrystone>());
+                        }
+                    }
+                    FirstTime = false;
+                }
+                else
+                {
+                    progress.Message = "Cave Collapsed! Generating new Mineshaft";
+                    Main.worldSurface = 0;
+                    Main.rockLayer = 0;
+                    for (int i = 0; i < Main.maxTilesX; i++)
+                    {
+                        for (int j = 0; j < Main.maxTilesY; j++)
+                        {
+                            progress.Set((j + i * Main.maxTilesY) / (float)(Main.maxTilesX * Main.maxTilesY)); //Controls the progress bar, should only be set between 0f and 1f
+			                Main.tile[i, j].active(true);
+                            Main.tile[i, j].type = (ushort)(ModContent.TileType<Quarrystone>());
+                        }
                     }
                 }
             })
-       };
+        };
+        public override void Load()
+        {
+            Main.dayTime = true;
+            Main.time = 27000;
+        }
     }
 }

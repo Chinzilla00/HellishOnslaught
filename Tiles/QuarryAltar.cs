@@ -25,7 +25,7 @@ namespace HellishOnslaught.Tiles
             Main.tileLighted[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
             TileObjectData.newTile.Direction = TileObjectDirection.None;
-            TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 18 };
+            TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 16 };
             TileObjectData.newTile.CoordinateWidth = 16;
             TileObjectData.newTile.CoordinatePadding = 2;
             TileObjectData.addTile(Type);
@@ -34,9 +34,6 @@ namespace HellishOnslaught.Tiles
             AddMapEntry(new Color(255, 203, 255), name);
             animationFrameHeight = 54;
         }
-        public static int count = 0;
-        public static bool WorldEvilFill = false;
-        public static bool DungeonBoneFill = false;
         public override bool CanKillTile(int i, int j, ref bool blockDamaged)
         {
             return false;
@@ -44,68 +41,6 @@ namespace HellishOnslaught.Tiles
         public override bool CanExplode(int i, int j)
         {
             return false;
-        }
-        public override bool NewRightClick(int i, int j)
-        {
-            Player player = Main.LocalPlayer;
-            if (player.HeldItem.type == ItemID.TissueSample && !DungeonBoneFill)
-            {
-                if (player.ConsumeItem(ItemID.TissueSample))
-                {
-                    if (count < 20)
-                    {
-                        WorldEvilFill = true;
-                        Main.PlaySound(SoundID.Tink, (int)(player.position.X), (int)(player.position.Y), 1, 1, 1);
-                        count++;
-                        //Frame Update Every 5
-                    }
-                    if (count >= 20)
-                    {
-                        WorldEvilFill = false;
-                        count = 0;
-                        //Boss Spawn
-                    }
-                }
-            }
-            if (player.HeldItem.type == ItemID.ShadowScale && !DungeonBoneFill)
-            {
-                if (player.ConsumeItem(ItemID.ShadowScale))
-                {
-                    if (count < 20)
-                    {
-                        WorldEvilFill = true;
-                        Main.PlaySound(SoundID.Tink, (int)(player.position.X), (int)(player.position.Y), 1, 1, 1);
-                        count++;
-                        //Frame Update Every 5
-                    }
-                    if (count >= 20)
-                    {
-                        WorldEvilFill = false;
-                        count = 0;
-                        //Boss Spawn
-                    }
-                }
-            }
-            if (player.HeldItem.type == ItemID.Bone && !WorldEvilFill && (WorldFile.LostFragmentDownedBlue || WorldFile.LostFragmentDownedGreen || WorldFile.LostFragmentDownedPink))
-            {
-                if (player.ConsumeItem(ItemID.Bone))
-                {
-                    if (count < 100)
-                    {
-                        DungeonBoneFill = true;
-                        Main.PlaySound(SoundID.Tink, (int)(player.position.X), (int)(player.position.Y), 1, 1, 1);
-                        count++;
-                        //Frame Update Every 25
-                    }
-                    if (count >= 100)
-                    {
-                        DungeonBoneFill = false;
-                        count = 0;
-                        Subworld.Enter<QuarryWorldFile>();
-                    }
-                }
-            }
-            return true;
         }
     }
 }
