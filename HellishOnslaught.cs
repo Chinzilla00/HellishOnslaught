@@ -7,6 +7,8 @@ namespace HellishOnslaught
 {
     class HellishOnslaught : Mod
     {
+
+
         public static ModHotKey ClanEmblem;
 
         public override void Load()

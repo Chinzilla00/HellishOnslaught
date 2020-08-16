@@ -8,6 +8,7 @@ namespace HellishOnslaught.Items
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Quarry Stone");
             Tooltip.SetDefault("It's a football!");
         }
 
