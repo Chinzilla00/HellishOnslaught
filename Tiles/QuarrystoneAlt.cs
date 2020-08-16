@@ -15,6 +15,7 @@ namespace HellishOnslaught.Tiles
             Main.tileMergeDirt[Type] = true;
             Main.tileSolid[Type] = true;
             Main.tileBlockLight[Type] = true;
+            Main.tileBlendAll[Type] = true;
 
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Quarry Stone");
