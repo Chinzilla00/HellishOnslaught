@@ -8,11 +8,13 @@ namespace HellishOnslaught
 {
     class HellishOnslaught : Mod
     {
+        internal static HellishOnslaught instance;
 
         public static ModHotKey ClanEmblem;
 
         public override void Load()
         {
+            instance = this;
             ClanEmblem = RegisterHotKey("Clan Active Ability", "M");
         }
 
@@ -33,6 +35,7 @@ namespace HellishOnslaught
         public override void Unload()
         {
             ClanEmblem = null;
+            instance = null;
         }
     }
 }

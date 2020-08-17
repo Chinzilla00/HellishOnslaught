@@ -1,4 +1,7 @@
-﻿using HellishOnslaught.Tiles;
+﻿using HellishOnslaught.TheQuarry;
+using HellishOnslaught.Tiles;
+using LiquidAPI;
+using SubworldLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +20,7 @@ namespace HellishOnslaught
         public static bool LostFragmentDownedBlue = false;
         public static bool LostFragmentDownedGreen = false;
         public static bool LostFragmentDownedPink = false;
+        private readonly bool HoneyToOil = false;
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
             int Altar = tasks.FindIndex((GenPass genpass) => genpass.Name.Equals("Dungeon"));
@@ -83,6 +87,30 @@ namespace HellishOnslaught
                         }
                     }
                 }));
+            }
+        }
+        public override void PostUpdate()
+        {
+            if (Subworld.IsActive<QuarryWorldFile>())
+            {
+                while (!HoneyToOil)
+                {
+                    for (int i = 0; i < Main.maxTilesX; i++)
+                    {
+                        for (int j = 0; j < Main.maxTilesY; j++)
+                        {
+                            Tile tile = Main.tile[i, j];
+                            if (tile.honey())
+                            {
+                                tile.honey(false);
+                                tile.liquid = 0;
+                                Mod mod = HellishOnslaught.instance;
+                                tile.liquidType(LiquidRegistry.GetLiquid(mod, "Oil").Type);
+                                tile.liquid = 255;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

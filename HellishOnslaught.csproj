@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\..\references\tModLoader.targets" />
   <PropertyGroup>
@@ -17,6 +17,12 @@
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="HellishOnslaught">
+      <HintPath>bin\Debug\net45\HellishOnslaught.dll</HintPath>
+    </Reference>
+    <Reference Include="Paradox">
+      <HintPath>ref\Paradox.dll</HintPath>
+    </Reference>
     <Reference Include="SubworldLibrary">
       <HintPath>ref\SubworldLibrary.dll</HintPath>
     </Reference>
@@ -28,6 +34,6 @@
     </Reference>
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="&quot;C:\Program Files (x86)\Steam\steamapps\common\Terraria\tModLoaderServer.exe&quot; -build &quot;$(ProjectDir)\&quot; -eac &quot;$(TargetPath)&quot;" />
+    <Exec Command="&quot;D:\SteamLibrary\steamapps\common\tModLoader\tModLoaderServer.exe&quot; -build &quot;$(ProjectDir)\&quot;-eac &quot;$(TargetPath)&quot;" />
   </Target>
 </Project>
