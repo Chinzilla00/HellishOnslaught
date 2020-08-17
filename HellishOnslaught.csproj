@@ -6,6 +6,7 @@
     <TargetFramework>net45</TargetFramework>
     <PlatformTarget>x86</PlatformTarget>
     <LangVersion>7.3</LangVersion>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -34,6 +35,6 @@
     </Reference>
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="&quot;D:\SteamLibrary\steamapps\common\tModLoader\tModLoaderServer.exe&quot; -build &quot;$(ProjectDir)\&quot;-eac &quot;$(TargetPath)&quot;" />
+    <Exec Command="&quot;D:\SteamLibrary\steamapps\common\tModLoader\tModLoaderServer.exe&quot; -build &quot;$(ProjectDir)\&quot; -eac &quot;$(TargetPath)&quot;" />
   </Target>
 </Project>
