@@ -20,7 +20,7 @@ namespace HellishOnslaught
         public static bool LostFragmentDownedBlue = false;
         public static bool LostFragmentDownedGreen = false;
         public static bool LostFragmentDownedPink = false;
-        private readonly bool HoneyToOil = false;
+        private bool HoneyToOil = false;
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
             int Altar = tasks.FindIndex((GenPass genpass) => genpass.Name.Equals("Dungeon"));
@@ -107,6 +107,7 @@ namespace HellishOnslaught
                                 Mod mod = HellishOnslaught.instance;
                                 tile.liquidType(LiquidRegistry.GetLiquid(mod, "Oil").Type);
                                 tile.liquid = 255;
+                                HoneyToOil = true;
                             }
                         }
                     }
