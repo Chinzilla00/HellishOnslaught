@@ -1,5 +1,4 @@
-﻿using Paradox.Buffs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -74,17 +73,21 @@ namespace HellishOnslaught
                     }
                     npc.lifeRegen -= damage;
                 }
-                if (npc.HasBuff(ModContent.BuffType<HostiliusFlames>()))
+                Mod Paradox = ModLoader.GetMod("Paradox");
+                if (Paradox != null)
                 {
-                    if (npc.lifeRegen > 0)
+                    if (npc.HasBuff(Paradox.BuffType("HostiliusFlames")))
                     {
-                        npc.lifeRegen = 0;
+                        if (npc.lifeRegen > 0)
+                        {
+                            npc.lifeRegen = 0;
+                        }
+                        if (damage < 90)
+                        {
+                            damage = 90;
+                        }
+                        npc.lifeRegen -= damage;
                     }
-                    if (damage < 90)
-                    {
-                        damage = 90;
-                    }
-                    npc.lifeRegen -= damage;
                 }
             }
         }

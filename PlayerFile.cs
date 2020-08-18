@@ -1,9 +1,9 @@
-﻿using Paradox.Buffs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -58,23 +58,27 @@ namespace HellishOnslaught
                     player.lifeRegenTime = 0;
                     player.lifeRegen -= 90;
                 }
-                if (player.HasBuff(ModContent.BuffType<HostiliusFlames>()))
+                Mod Paradox = ModLoader.GetMod("Paradox");
+                if (Paradox != null)
                 {
-                    if (player.lifeRegen > 0)
+                    if (player.HasBuff(Paradox.BuffType("HostiliusFlames")))
                     {
-                        player.lifeRegen = 0;
+                        if (player.lifeRegen > 0)
+                        {
+                            player.lifeRegen = 0;
+                        }
+                        player.lifeRegenTime = 0;
+                        player.lifeRegen -= 180;
                     }
-                    player.lifeRegenTime = 0;
-                    player.lifeRegen -= 180;
-                }
-                if (player.HasBuff(ModContent.BuffType<HellionInferno>()))
-                {
-                    if (player.lifeRegen > 0)
+                    if (player.HasBuff(Paradox.BuffType("HellionInferno")))
                     {
-                        player.lifeRegen = 0;
+                        if (player.lifeRegen > 0)
+                        {
+                            player.lifeRegen = 0;
+                        }
+                        player.lifeRegenTime = 0;
+                        player.lifeRegen -= 225;
                     }
-                    player.lifeRegenTime = 0;
-                    player.lifeRegen -= 225;
                 }
             }
         }
