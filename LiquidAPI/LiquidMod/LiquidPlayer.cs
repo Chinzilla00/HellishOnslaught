@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace LiquidAPI.LiquidMod
+namespace HellishOnslaught.LiquidAPI.LiquidMod
 {
     public class LiquidPlayer : ModPlayer
     {

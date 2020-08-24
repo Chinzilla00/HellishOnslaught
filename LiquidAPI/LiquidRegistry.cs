@@ -1,5 +1,5 @@
-﻿using LiquidAPI.Hooks;
-using LiquidAPI.LiquidMod;
+﻿using HellishOnslaught.LiquidAPI.Hooks;
+using HellishOnslaught.LiquidAPI.LiquidMod;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace LiquidAPI
+namespace HellishOnslaught.LiquidAPI
 {
     public static class LiquidRegistry
     {
@@ -22,7 +22,7 @@ namespace LiquidAPI
         static LiquidRegistry()
         {
             liquidList = new Dictionary<int, ModLiquid>();
-            LiquidAPI.OnUnload += () =>
+            HellishOnslaught.OnUnload += () =>
             {
                 Array.Resize(ref Main.liquidTexture, vanillaMaxVanilla);
                 liquidList.Clear();

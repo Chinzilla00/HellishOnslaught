@@ -1,8 +1,8 @@
-﻿using LiquidAPI.LiquidMod;
+﻿using HellishOnslaught.LiquidAPI.LiquidMod;
 using Terraria;
 using Terraria.ID;
 
-namespace LiquidAPI.Hooks
+namespace HellishOnslaught.LiquidAPI.Hooks
 {
     internal static partial class LiquidHooks
     {

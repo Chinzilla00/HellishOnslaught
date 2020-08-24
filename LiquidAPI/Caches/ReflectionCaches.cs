@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.GameContent.UI.States;
 using Terraria.ModLoader;
 
-namespace LiquidAPI.Caches
+namespace HellishOnslaught.LiquidAPI.Caches
 {
     class ReflectionCaches
     {

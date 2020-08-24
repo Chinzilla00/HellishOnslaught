@@ -1,12 +1,13 @@
-﻿using LiquidAPI.ID;
-using LiquidAPI.LiquidMod;
-using LiquidAPI.Vanilla;
+﻿using HellishOnslaught.LiquidAPI;
+using HellishOnslaught.LiquidAPI.ID;
+using HellishOnslaught.LiquidAPI.LiquidMod;
+using HellishOnslaught.LiquidAPI.Vanilla;
 using System;
 using Terraria;
 using Terraria.ID;
 using static Terraria.Liquid;
 
-namespace LiquidAPI.Hooks
+namespace HellishOnslaught.LiquidAPI.Hooks
 {
     internal static partial class LiquidHooks
     {
@@ -92,22 +93,22 @@ namespace LiquidAPI.Hooks
                 }
                 else
                 {
-                    if (liquidLeft.TypeID != 0 && liquidLeft.TypeID == liquidSelf.TypeID)
+                    if (liquidLeft.TypeID == LiquidID.Honey)
                     {
                         Liquid.AddWater(self.x - 1, self.y);
                     }
 
-                    if (liquidRight.TypeID != 0 && liquidRight.TypeID == liquidSelf.TypeID)
+                    if (liquidRight.TypeID == LiquidID.Honey)
                     {
                         Liquid.AddWater(self.x + 1, self.y);
                     }
 
-                    if (liquidUp.TypeID != 0 && liquidUp.TypeID == liquidSelf.TypeID)
+                    if (liquidUp.TypeID == LiquidID.Honey)
                     {
                         Liquid.AddWater(self.x, self.y - 1);
                     }
 
-                    if (liquidDown.TypeID != 0 && liquidDown.TypeID == liquidSelf.TypeID)
+                    if (liquidDown.TypeID == LiquidID.Honey)
                     {
                         Liquid.AddWater(self.x, self.y + 1);
                     }

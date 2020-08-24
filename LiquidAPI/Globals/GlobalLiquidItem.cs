@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LiquidAPI.Items;
-using LiquidAPI.LiquidMod;
+using HellishOnslaught.LiquidAPI.Items;
+using HellishOnslaught.LiquidAPI.LiquidMod;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace LiquidAPI.Globals
+namespace HellishOnslaught.LiquidAPI.Globals
 {
     class GlobalLiquidItem : GlobalItem
     {
@@ -44,7 +45,12 @@ namespace LiquidAPI.Globals
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            base.ModifyTooltips(item, tooltips);
+            if (LiquidBucketID.Contains(item.type))
+            {
+                var line = new TooltipLine(mod, "Bucket Helper", "Warning: Vanilla Buckets Do Not Work!");
+                line.overrideColor = new Color(255, 50, 50);
+                tooltips.Add(line);
+            }
         }
     }
 }

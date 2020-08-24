@@ -1,4 +1,4 @@
-﻿namespace LiquidAPI.Data
+﻿namespace HellishOnslaught.LiquidAPI.Data
 {
     public struct Bit
     {

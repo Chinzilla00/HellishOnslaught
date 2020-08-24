@@ -1,4 +1,4 @@
-using LiquidAPI.LiquidMod;
+using HellishOnslaught.LiquidAPI.LiquidMod;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.Graphics;
 using Terraria.Utilities;
 
-namespace LiquidAPI
+namespace HellishOnslaught.LiquidAPI
 {
     public class LiquidRenderer
     {

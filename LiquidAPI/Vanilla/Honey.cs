@@ -1,14 +1,12 @@
-﻿using LiquidAPI.ID;
+﻿using HellishOnslaught.LiquidAPI.ID;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 
-namespace LiquidAPI.Vanilla
+namespace HellishOnslaught.LiquidAPI.Vanilla
 {
     public class Honey : ModLiquid
     {
         public override bool Autoload(ref string name, ref string texture, ref string fancyTexture) => false;
-
-        public override Color LiquidColor => new Color(215, 131, 8);
 
         public override void SetDefaults()
         {
@@ -19,8 +17,8 @@ namespace LiquidAPI.Vanilla
             ViscosityMask = 240;
             Name = "Honey";
 
-            LiquidAPI.interactionResult[Type, LiquidID.Water] = TileID.HoneyBlock;
-            LiquidAPI.interactionResult[Type, LiquidID.Lava] = TileID.CrispyHoneyBlock;
+            HellishOnslaught.interactionResult[Type, LiquidID.Water] = TileID.HoneyBlock;
+            HellishOnslaught.interactionResult[Type, LiquidID.Lava] = TileID.CrispyHoneyBlock;
         }
     }
 }

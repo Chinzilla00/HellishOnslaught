@@ -1,6 +1,8 @@
-﻿using Terraria;
+﻿using HellishOnslaught.LiquidAPI;
+using HellishOnslaught.LiquidAPI.LiquidMod;
+using Terraria;
 
-namespace LiquidAPI.LiquidMod
+namespace HellishOnslaught.LiquidAPI.LiquidMod
 {
     public readonly ref struct LiquidRef
     {

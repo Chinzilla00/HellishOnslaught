@@ -1,4 +1,4 @@
-﻿namespace LiquidAPI.ID
+﻿namespace HellishOnslaught.LiquidAPI.ID
 {
     internal static class LiquidID
     {

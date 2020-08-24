@@ -1,5 +1,4 @@
-﻿using LiquidAPI.Data;
-using LiquidAPI.Vanilla;
+﻿using HellishOnslaught.LiquidAPI.Vanilla;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -8,8 +7,9 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
 using Terraria.World.Generation;
+using HellishOnslaught.LiquidAPI.Data;
 
-namespace LiquidAPI.LiquidMod
+namespace HellishOnslaught.LiquidAPI.LiquidMod
 {
     //The following code is a modified version of DataCore from Project_Logic 0.5.0.1 provided by Rartrin
     public class LiquidWorld : ModWorld
@@ -24,7 +24,7 @@ namespace LiquidAPI.LiquidMod
 
         static LiquidWorld()
         {
-            LiquidAPI.OnUnload += () =>
+            HellishOnslaught.OnUnload += () =>
               {
                   grid = null;
                   liquidGrid = null;

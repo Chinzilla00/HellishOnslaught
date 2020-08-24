@@ -1,11 +1,11 @@
-﻿using LiquidAPI.ID;
+﻿using HellishOnslaught.LiquidAPI.ID;
 using Microsoft.Xna.Framework;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace LiquidAPI.Globals
+namespace HellishOnslaught.LiquidAPI.Globals
 {
     class GlobalLiquidNPC : GlobalNPC
     {

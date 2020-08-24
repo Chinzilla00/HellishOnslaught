@@ -1,5 +1,4 @@
-﻿using LiquidAPI.ID;
-using LiquidAPI.LiquidMod;
+﻿using HellishOnslaught.LiquidAPI.LiquidMod;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Mono.Cecil.Cil;
@@ -9,8 +8,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Terraria;
 using Terraria.ModLoader;
+using HellishOnslaught.LiquidAPI.ID;
 
-namespace LiquidAPI.Hooks
+namespace HellishOnslaught.LiquidAPI.Hooks
 {
     internal static partial class LiquidHooks
     {

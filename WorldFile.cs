@@ -1,12 +1,10 @@
-﻿using HellishOnslaught.TheQuarry;
+﻿using HellishOnslaught.LiquidAPI;
+using HellishOnslaught.LiquidAPI.LiquidMod;
+using HellishOnslaught.LiquidFile;
+using HellishOnslaught.TheQuarry;
 using HellishOnslaught.Tiles;
-using LiquidAPI;
 using SubworldLibrary;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
@@ -20,7 +18,8 @@ namespace HellishOnslaught
         public static bool LostFragmentDownedBlue = false;
         public static bool LostFragmentDownedGreen = false;
         public static bool LostFragmentDownedPink = false;
-        private bool HoneyToOil = false;
+        public static bool HoneyToOil = false;
+        public static int HoneyToOilCooldown = 5;
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
             int Altar = tasks.FindIndex((GenPass genpass) => genpass.Name.Equals("Dungeon"));
@@ -95,21 +94,24 @@ namespace HellishOnslaught
             {
                 while (!HoneyToOil)
                 {
-                    for (int i = 0; i < Main.maxTilesX; i++)
+                    HoneyToOilCooldown--;
+                    if (HoneyToOilCooldown <= 0)
                     {
-                        for (int j = 0; j < Main.maxTilesY; j++)
+                        for (int i = 0; i < Main.maxTilesX; i++)
                         {
-                            Tile tile = Main.tile[i, j];
-                            if (tile.honey())
+                            for (int j = 0; j < Main.maxTilesY; j++)
                             {
-                                tile.honey(false);
-                                tile.liquid = 0;
-                                Mod mod = HellishOnslaught.instance;
-                                tile.liquidType(LiquidRegistry.GetLiquid(mod, "Oil").Type);
-                                tile.liquid = 255;
-                                HoneyToOil = true;
+                                Tile tile = Main.tile[i, j];
+                                if (tile.honey())
+                                {
+                                    Mod mod = HellishOnslaught.instance;
+                                    LiquidRef liquid = LiquidWorld.grid[i, j];
+                                    liquid.Type = null;
+                                    liquid.Amount = 255;
+                                }
                             }
                         }
+                        HoneyToOil = true;
                     }
                 }
             }

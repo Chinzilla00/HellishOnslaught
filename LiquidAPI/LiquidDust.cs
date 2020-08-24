@@ -1,4 +1,4 @@
-﻿namespace LiquidAPI
+﻿namespace HellishOnslaught.LiquidAPI
 {
     public struct LiquidDust
     {

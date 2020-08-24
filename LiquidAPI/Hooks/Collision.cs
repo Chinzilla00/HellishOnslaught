@@ -1,13 +1,13 @@
-﻿using LiquidAPI.Globals;
-using LiquidAPI.ID;
-using LiquidAPI.LiquidMod;
+﻿using HellishOnslaught.LiquidAPI.Globals;
+using HellishOnslaught.LiquidAPI.ID;
+using HellishOnslaught.LiquidAPI.LiquidMod;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ID;
 
-namespace LiquidAPI.Hooks
+namespace HellishOnslaught.LiquidAPI.Hooks
 {
     internal static partial class LiquidHooks
     {

@@ -1,9 +1,9 @@
-﻿using LiquidAPI.LiquidMod;
+﻿using HellishOnslaught.LiquidAPI.LiquidMod;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
-namespace LiquidAPI.Hooks
+namespace HellishOnslaught.LiquidAPI.Hooks
 {
     internal static partial class LiquidHooks
     {
@@ -11,7 +11,7 @@ namespace LiquidAPI.Hooks
 
         private static void LiquidOnLavaCheck(On.Terraria.Liquid.orig_LavaCheck orig, int x, int y)
         {
-            NewModLiquidCheck(x, y, LiquidRegistry.GetLiquid(LiquidAPI.instance, "Lava"));
+            NewModLiquidCheck(x, y, LiquidRegistry.GetLiquid(HellishOnslaught.instance, "Lava"));
         }
 
         internal static void NewModLiquidCheck(int x, int y, ModLiquid targetType)
@@ -88,13 +88,13 @@ namespace LiquidAPI.Hooks
 #pragma warning disable IDE0059 // Unnecessary assignment of a value
                 int type = -1;
 #pragma warning restore IDE0059 // Unnecessary assignment of a value
-                type = LiquidAPI.interactionResult[LiquidWorld.grid[x - 1, y].Type.Type, targetType.Type];
+                type = HellishOnslaught.interactionResult[LiquidWorld.grid[x - 1, y].Type.Type, targetType.Type];
                 if (type == -1)
                 {
-                    type = LiquidAPI.interactionResult[LiquidWorld.grid[x + 1, y].Type.Type, targetType.Type];
+                    type = HellishOnslaught.interactionResult[LiquidWorld.grid[x + 1, y].Type.Type, targetType.Type];
                     if (type == -1)
                     {
-                        type = LiquidAPI.interactionResult[LiquidWorld.grid[x, y + 1].Type.Type, targetType.Type];
+                        type = HellishOnslaught.interactionResult[LiquidWorld.grid[x, y + 1].Type.Type, targetType.Type];
                     }
                 }
 
@@ -171,7 +171,7 @@ namespace LiquidAPI.Hooks
                         if (self.Type.LiquidInteraction(x, y, targetType)) return;
                         // what does this code even do? - Agrair
                         int type = -1;
-                        type = LiquidAPI.interactionResult[LiquidWorld.grid[x - 1, y].Type.Type, targetType.Type];
+                        type = HellishOnslaught.interactionResult[LiquidWorld.grid[x - 1, y].Type.Type, targetType.Type];
 
                         if (type == -1)
                         {
@@ -202,7 +202,7 @@ namespace LiquidAPI.Hooks
 
         private static void LiquidOnHoneyCheck(On.Terraria.Liquid.orig_HoneyCheck orig, int x, int y)
         {
-            NewModLiquidCheck(x, y, LiquidRegistry.GetLiquid(LiquidAPI.instance, "Honey"));
+            NewModLiquidCheck(x, y, LiquidRegistry.GetLiquid(HellishOnslaught.instance, "Honey"));
         }
 
         /*

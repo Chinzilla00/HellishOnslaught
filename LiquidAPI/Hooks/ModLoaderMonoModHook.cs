@@ -1,4 +1,4 @@
-﻿namespace LiquidAPI.Hooks
+﻿namespace HellishOnslaught.LiquidAPI.Hooks
 {
     class ModLoaderMonoModHook
     {

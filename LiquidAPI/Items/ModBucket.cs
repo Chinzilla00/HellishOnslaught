@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LiquidAPI.Caches;
-using LiquidAPI.LiquidMod;
+using HellishOnslaught.LiquidAPI.Caches;
+using HellishOnslaught.LiquidAPI.LiquidMod;
+using HellishOnslaught.LiquidFile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace LiquidAPI.Items
+namespace HellishOnslaught.LiquidAPI.Items
 {
     public class ModBucket : ModItem
     {
         private readonly ModLiquid liquid;
 
-        public override string Texture => "LiquidAPI/ModBucket";
+        public override string Texture => "HellishOnslaught/LiquidAPI/ModBucket";
 
         public override bool CloneNewInstances => true;
 
@@ -69,7 +70,6 @@ namespace LiquidAPI.Items
                 liquid.Amount = 255;
 
                 WorldGen.SquareTileFrame(Player.tileTargetX, Player.tileTargetY, true);
-                
             }
 
             return true;
@@ -81,19 +81,49 @@ namespace LiquidAPI.Items
             item.useTime = 45;
             item.useStyle = 4;
 
-            if (liquid != null)
+            if (liquid.Type == 0)
             {
-                Texture2D liquidTexture = LiquidAPI.instance.GetTexture("Texture/Bucket/liquid");
-                spriteBatch.Draw(liquidTexture, position, null, liquid.LiquidColor, 0f, origin, new Vector2(scale), SpriteEffects.None, 0);
+                Texture2D liquidTexture = HellishOnslaught.instance.GetTexture("LiquidAPI/Texture/Bucket/Water_Bucket");
+                spriteBatch.Draw(liquidTexture, position, null, Color.White, 0f, origin, new Vector2(scale), SpriteEffects.None, 0);
+            }
+            if (liquid.Type == 1)
+            {
+                Texture2D liquidTexture = HellishOnslaught.instance.GetTexture("LiquidAPI/Texture/Bucket/Lava_Bucket");
+                spriteBatch.Draw(liquidTexture, position, null, Color.White, 0f, origin, new Vector2(scale), SpriteEffects.None, 0);
+            }
+            if (liquid.Type == 2)
+            {
+                Texture2D liquidTexture = HellishOnslaught.instance.GetTexture("LiquidAPI/Texture/Bucket/Honey_Bucket");
+                spriteBatch.Draw(liquidTexture, position, null, Color.White, 0f, origin, new Vector2(scale), SpriteEffects.None, 0);
+            }
+            if (liquid.Type == 3)
+            {
+                Texture2D liquidTexture = HellishOnslaught.instance.GetTexture("LiquidAPI/Texture/Bucket/Oil_Bucket");
+                spriteBatch.Draw(liquidTexture, position, null, Color.White, 0f, origin, new Vector2(scale), SpriteEffects.None, 0);
             }
         }
 
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            if (liquid != null)
+            if (liquid.Type == 0)
             {
-                Texture2D liquidTexture = LiquidAPI.instance.GetTexture("Texture/Bucket/liquid");
-                spriteBatch.Draw(liquidTexture, item.position, liquid.LiquidColor);
+                Texture2D liquidTexture = HellishOnslaught.instance.GetTexture("LiquidAPI/Texture/Bucket/Water_Bucket");
+                spriteBatch.Draw(liquidTexture, item.position, Color.White);
+            }
+            if (liquid.Type == 1)
+            {
+                Texture2D liquidTexture = HellishOnslaught.instance.GetTexture("LiquidAPI/Texture/Bucket/Lava_Bucket");
+                spriteBatch.Draw(liquidTexture, item.position, Color.White);
+            }
+            if (liquid.Type == 2)
+            {
+                Texture2D liquidTexture = HellishOnslaught.instance.GetTexture("LiquidAPI/Texture/Bucket/Honey_Bucket");
+                spriteBatch.Draw(liquidTexture, item.position, Color.White);
+            }
+            if (liquid.Type == 3)
+            {
+                Texture2D liquidTexture = HellishOnslaught.instance.GetTexture("LiquidAPI/Texture/Bucket/Oil_Bucket");
+                spriteBatch.Draw(liquidTexture, item.position, Color.White);
             }
         }
 
