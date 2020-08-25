@@ -19,7 +19,7 @@ namespace HellishOnslaught.Tiles
 
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Quarry Stone");
-            AddMapEntry(new Color(66, 197, 53), name);
+            AddMapEntry(new Color(127, 51, 0), name);
 
             dustType = 84;
             drop = ModContent.ItemType<QuarrystoneItem>();

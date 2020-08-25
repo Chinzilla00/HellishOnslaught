@@ -24,7 +24,9 @@ namespace HellishOnslaught.Tiles
             Main.tileBlockLight[Type] = true;
             TileID.Sets.TouchDamageSands[Type] = 15;
             TileID.Sets.Falling[Type] = true;
-            AddMapEntry(new Color(35, 185, 35));
+            ModTranslation name = CreateMapEntryName();
+            name.SetDefault("Gravel");
+            AddMapEntry(new Color(127, 127, 127), name);
             dustType = 84;
             drop = ModContent.ItemType<GravelBlock>();
         }

@@ -14,14 +14,15 @@ namespace HellishOnslaught.Projectiles
     {
         public override void SetDefaults()
         {
-            projectile.width = 1;
-            projectile.height = 1;
+            projectile.width = 2;
+            projectile.height = 2;
             projectile.friendly = true;
             projectile.penetrate = -1;
             projectile.timeLeft = 5;
         }
         public override void AI()
         {
+            projectile.timeLeft--;
             if (projectile.owner == Main.myPlayer && projectile.timeLeft <= 3)
             {
                 projectile.tileCollide = false;
