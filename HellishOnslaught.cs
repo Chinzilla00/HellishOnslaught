@@ -20,6 +20,18 @@ namespace HellishOnslaught
         public static ModHotKey ClanEmblem;
 
         internal static HellishOnslaught instance;
+		
+	public HellishOnslaught()
+	{
+		Properties = new ModProperties()
+		{
+			Autoload = true,
+			AutoloadGores = true,
+			AutoloadSounds = true,
+			AutoloadBackgrounds = true
+		};
+	}
+		
         public override void UpdateMusic(ref int music, ref MusicPriority priority)
         {
             if (Main.gameMenu)
@@ -65,6 +77,8 @@ namespace HellishOnslaught
             this.AddLiquid<Lava>("LiquidLava");
             this.AddLiquid<Honey>("LiquidHoney");
             this.AddLiquid<Oil>("LiquidOil");
+	    
+            Filters.Scene["HellishOnslaught:Quarry"] = new Filter(new ScreenShaderData("FilterMiniTower").UseColor(0f, 0f, 0f).UseOpacity(0.8f), EffectPriority.High);
 
             LiquidHooks.OldHoneyTexture = new List<Texture2D>()
             {
