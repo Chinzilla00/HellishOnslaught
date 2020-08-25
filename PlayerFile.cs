@@ -82,5 +82,12 @@ namespace HellishOnslaught
                 }
             }
         }
+        
+           
+		public override void UpdateBiomes()
+		{
+            useQuarry = Subworld.IsActive<QuarryWorldFile>();
+            player.ManageSpecialBiomeVisuals("HellishOnslaught:Quarry", useQuarry);
+        }
     }
 }
