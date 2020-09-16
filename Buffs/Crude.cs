@@ -1,4 +1,5 @@
-﻿using HellishOnslaught.NPCs;
+﻿using HellishOnslaught.LiquidFile;
+using HellishOnslaught.NPCs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,15 +21,18 @@ namespace HellishOnslaught.Buffs
             Main.buffNoSave[Type] = true;
             longerExpertDebuff = true;
         }
-
         public override void Update(Player player, ref int buffIndex)
         {
             player.GetModPlayer<PlayerFile>().Crude = true;
         }
-
         public override void Update(NPC npc, ref int buffIndex)
         {
             npc.GetGlobalNPC<GlobalNPCFile>().Crude = true;
+        }
+        public static string Bomb()
+        {
+            //Not Here!
+            return Oil.Bomb();
         }
     }
 }

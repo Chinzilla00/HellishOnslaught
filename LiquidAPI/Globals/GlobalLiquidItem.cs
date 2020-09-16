@@ -24,7 +24,6 @@ namespace HellishOnslaught.LiquidAPI.Globals
             }
             if (item.type == ItemID.EmptyBucket)
             {
-                
                 if (!player.noBuilding && player.position.X / 16f - (float)Player.tileRangeX - (float)player.inventory[player.selectedItem].tileBoost - (float)player.blockRange <= (float)Player.tileTargetX && (player.position.X + (float)player.width) / 16f + (float)Player.tileRangeX + (float)player.inventory[player.selectedItem].tileBoost - 1f + (float)player.blockRange >= (float)Player.tileTargetX && player.position.Y / 16f - (float)Player.tileRangeY - (float)player.inventory[player.selectedItem].tileBoost - (float)player.blockRange <= (float)Player.tileTargetY && (player.position.Y + (float)player.height) / 16f + (float)Player.tileRangeY + (float)player.inventory[player.selectedItem].tileBoost - 2f + (float)player.blockRange >= (float)Player.tileTargetY)
                 {
                     LiquidRef liqRef = LiquidWorld.grid[Player.tileTargetX, Player.tileTargetY];
@@ -41,16 +40,6 @@ namespace HellishOnslaught.LiquidAPI.Globals
                 return false;
             }
             return base.CanUseItem(item, player);
-        }
-
-        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
-        {
-            if (LiquidBucketID.Contains(item.type))
-            {
-                var line = new TooltipLine(mod, "Bucket Helper", "Warning: Vanilla Buckets Do Not Work!");
-                line.overrideColor = new Color(255, 50, 50);
-                tooltips.Add(line);
-            }
         }
     }
 }

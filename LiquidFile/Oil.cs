@@ -7,6 +7,7 @@ using HellishOnslaught.Buffs;
 using HellishOnslaught.LiquidAPI;
 using HellishOnslaught.LiquidAPI.ID;
 using HellishOnslaught.Tiles;
+using HellishOnslaught.LiquidAPI.Vanilla;
 
 namespace HellishOnslaught.LiquidFile
 {
@@ -39,6 +40,12 @@ namespace HellishOnslaught.LiquidFile
         {
             target.AddBuff(BuffID.Slow, 90);
             target.AddBuff(ModContent.BuffType<Crude>(), 300);
+        }
+        public static string Bomb()
+        {
+            //Your Efforts Are So In Vain!
+            //But Keep Going!
+            return Water.Bomb();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using HellishOnslaught.LiquidAPI;
+﻿using HellishOnslaught.Buffs;
+using HellishOnslaught.Items;
+using HellishOnslaught.LiquidAPI;
 using HellishOnslaught.LiquidAPI.LiquidMod;
 using HellishOnslaught.LiquidFile;
 using HellishOnslaught.TheQuarry;
@@ -18,8 +20,10 @@ namespace HellishOnslaught
         public static bool LostFragmentDownedBlue = false;
         public static bool LostFragmentDownedGreen = false;
         public static bool LostFragmentDownedPink = false;
-        public static bool HoneyToOil = false;
-        public static int HoneyToOilCooldown = 5;
+        public static bool CreeperAwMan = false;
+        public static bool TickTickBoom = false;
+
+        public static string Copypaste() { return Red.L() + Green.E() + Blue.M() + White.O() + Teal.N() + Pink.E() + Yellow.Y() + LightsReach.Bomb() + "?"; }
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
             int Altar = tasks.FindIndex((GenPass genpass) => genpass.Name.Equals("Dungeon"));
@@ -86,34 +90,6 @@ namespace HellishOnslaught
                         }
                     }
                 }));
-            }
-        }
-        public override void PostUpdate()
-        {
-            if (Subworld.IsActive<QuarryWorldFile>())
-            {
-                while (!HoneyToOil)
-                {
-                    HoneyToOilCooldown--;
-                    if (HoneyToOilCooldown <= 0)
-                    {
-                        for (int i = 0; i < Main.maxTilesX; i++)
-                        {
-                            for (int j = 0; j < Main.maxTilesY; j++)
-                            {
-                                Tile tile = Main.tile[i, j];
-                                if (tile.honey())
-                                {
-                                    Mod mod = HellishOnslaught.instance;
-                                    LiquidRef liquid = LiquidWorld.grid[i, j];
-                                    liquid.Type = null;
-                                    liquid.Amount = 255;
-                                }
-                            }
-                        }
-                        HoneyToOil = true;
-                    }
-                }
             }
         }
     }

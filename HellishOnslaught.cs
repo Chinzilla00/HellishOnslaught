@@ -12,6 +12,8 @@ using Terraria;
 using Terraria.ModLoader;
 using HellishOnslaught.LiquidFile;
 using Terraria.ID;
+using Terraria.Graphics.Effects;
+using Terraria.Graphics.Shaders;
 
 namespace HellishOnslaught
 {
@@ -21,24 +23,19 @@ namespace HellishOnslaught
 
         internal static HellishOnslaught instance;
 		
-	public HellishOnslaught()
-	{
-		Properties = new ModProperties()
-		{
-			Autoload = true,
-			AutoloadGores = true,
-			AutoloadSounds = true,
-			AutoloadBackgrounds = true
-		};
-	}
+        public HellishOnslaught()
+        {
+	        Properties = new ModProperties()
+	        {
+		        Autoload = true,
+		        AutoloadGores = true,
+		        AutoloadSounds = true,
+		        AutoloadBackgrounds = true
+	        };
+        }
 		
         public override void UpdateMusic(ref int music, ref MusicPriority priority)
         {
-            if (Main.gameMenu)
-            {
-                return;
-            }
-
             if (Subworld.IsActive<QuarryWorldFile>())
             {
                 music = GetSoundSlot(SoundType.Music, "Music/IntoTheMineshaft");
@@ -60,14 +57,14 @@ namespace HellishOnslaught
 
             ClanEmblem = RegisterHotKey("Clan Active Ability", "M");
 
-            interactionResult = new int[256, 256];
-            killTile = new bool[TileLoader.TileCount, 256];
+            interactionResult = new int[255, 255];
+            killTile = new bool[TileLoader.TileCount, 255];
 
             ReflectionCaches.Load();
 
-            for (int i = 0; i < 256; i++)
+            for (int i = 0; i < 255; i++)
             {
-                for (int j = 0; j < 256; j++)
+                for (int j = 0; j < 255; j++)
                 {
                     interactionResult[i, j] = -1;
                 }
@@ -78,15 +75,15 @@ namespace HellishOnslaught
             this.AddLiquid<Honey>("LiquidHoney");
             this.AddLiquid<Oil>("LiquidOil");
 	    
-            Filters.Scene["HellishOnslaught:Quarry"] = new Filter(new ScreenShaderData("FilterMiniTower").UseColor(0f, 0f, 0f).UseOpacity(0.8f), EffectPriority.High);
+            Filters.Scene["HellishOnslaught:Quarry"] = new Filter(new ScreenShaderData("FilterMiniTower").UseColor(0f, 0f, 0f).UseOpacity(0.85f), EffectPriority.High);
 
             LiquidHooks.OldHoneyTexture = new List<Texture2D>()
             {
-                Main.liquidTexture[11],
+                Main.liquidTexture[1],
 		    };
             LiquidHooks.OldLavaTexture = new List<Texture2D>()
             {
-                Main.liquidTexture[1],
+                Main.liquidTexture[11],
             };
             List<Texture2D> OldWaterTextureList = new List<Texture2D>();
             for (int i = 0; i < 11; i++)

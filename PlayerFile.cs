@@ -1,4 +1,7 @@
-﻿using System;
+﻿using HellishOnslaught.Buffs;
+using HellishOnslaught.TheQuarry;
+using SubworldLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +15,19 @@ namespace HellishOnslaught
     class PlayerFile : ModPlayer
     {
         public bool Crude;
+        private bool useQuarry;
+        public static string EEEEE(bool a, bool b, bool c, bool d, bool e)
+        {
+            if (a && b && c && d && e)
+            {
+                return "https://github.com/Chinzilla00/HellishOnslaught";
+            }
+            else
+            {
+                return "Nuggets";
+            }
+        }
+
         public override void UpdateBadLifeRegen()
         {
             if (Crude)
@@ -82,11 +98,10 @@ namespace HellishOnslaught
                 }
             }
         }
-        
            
 		public override void UpdateBiomes()
 		{
-            useQuarry = Subworld.IsActive<QuarryWorldFile>();
+            useQuarry = Subworld.IsActive<QuarryWorldFile>() && !player.HasBuff(ModContent.BuffType<LightsReach>());
             player.ManageSpecialBiomeVisuals("HellishOnslaught:Quarry", useQuarry);
         }
     }

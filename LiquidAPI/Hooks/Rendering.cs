@@ -18,8 +18,8 @@ namespace HellishOnslaught.LiquidAPI.Hooks
         public static List<Texture2D> OldLavaTexture;
         public static List<Texture2D> OldWaterTexture;
 
-        public static int lavaStyle = 0; //0 being default lava texture
-        public static int honeyStyle = 0; //0 being default honey texture
+        public static int lavaStyle = 1; //0 being default lava texture
+        public static int honeyStyle = 11; //0 being default honey texture
 
 
         public static void ILDrawWaterSlope(ILContext il)

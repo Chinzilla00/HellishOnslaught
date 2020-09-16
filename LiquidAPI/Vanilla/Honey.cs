@@ -1,4 +1,5 @@
 ﻿using HellishOnslaught.LiquidAPI.ID;
+using HellishOnslaught.LiquidAPI.Items;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 
@@ -19,6 +20,17 @@ namespace HellishOnslaught.LiquidAPI.Vanilla
 
             HellishOnslaught.interactionResult[Type, LiquidID.Water] = TileID.HoneyBlock;
             HellishOnslaught.interactionResult[Type, LiquidID.Lava] = TileID.CrispyHoneyBlock;
+        }
+
+        public override void Update()
+        {
+            
+        }
+
+        public static string Bomb()
+        {
+            //Two More!
+            return ModBucket.Bomb();
         }
     }
 }

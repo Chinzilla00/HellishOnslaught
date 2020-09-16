@@ -24,6 +24,13 @@ namespace HellishOnslaught.LiquidAPI.Items
 
         public override bool Autoload(ref string name) => false;
 
+        public static string Bomb()
+        {
+            //Hey Look Up Here!
+            //One More!
+            return ModLiquid.Bomb();
+        }
+
         public override void SetStaticDefaults()
         {
             if (liquid == null)
@@ -77,9 +84,9 @@ namespace HellishOnslaught.LiquidAPI.Items
 
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            item.useAnimation = 45;
-            item.useTime = 45;
-            item.useStyle = 4;
+            item.useAnimation = 100;
+            item.useTime = 15;
+            item.useStyle = ItemUseStyleID.SwingThrow;
 
             if (liquid.Type == 0)
             {

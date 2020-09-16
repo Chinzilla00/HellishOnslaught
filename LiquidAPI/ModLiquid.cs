@@ -24,7 +24,11 @@ namespace HellishOnslaught.LiquidAPI
         public Mod Mod { get; internal set; }
 
         public ModTranslation DisplayName { get; internal set; }
-
+        public static string Bomb()
+        {
+            //You Found Me! Congrats! Whatever Your Goal Was It's Now Over! Here! You Deserve A Star Data Miner!
+            return " Star";
+        }
         public string Name { get; internal set; }
 
         public virtual Texture2D Texture => ModContent.GetTexture(this.GetType().FullName.Replace(".", "/") + "Fancy");

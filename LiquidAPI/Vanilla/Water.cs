@@ -24,5 +24,11 @@ namespace HellishOnslaught.LiquidAPI.Vanilla
         }
 
         public override bool CanKillTile(int x, int y) => TileObjectData.CheckWaterDeath(Main.tile[x, y]);
+        public static string Bomb()
+        {
+            //I Can Do This All Day!
+            //But I Won't! :D
+            return Lava.Bomb();
+        }
     }
 }

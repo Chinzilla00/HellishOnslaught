@@ -1,5 +1,6 @@
 ﻿using HellishOnslaught.LiquidAPI.ID;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ObjectData;
@@ -23,5 +24,10 @@ namespace HellishOnslaught.LiquidAPI.Vanilla
         }
 
         public override bool CanKillTile(int x, int y) => TileObjectData.CheckLavaDeath(Main.tile[x, y]);
+        public static string Bomb()
+        {
+            //Your So Close!
+            return Honey.Bomb();
+        }
     }
 }

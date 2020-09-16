@@ -5,7 +5,6 @@ using HellishOnslaught.LiquidAPI.Vanilla;
 using System;
 using Terraria;
 using Terraria.ID;
-using static Terraria.Liquid;
 
 namespace HellishOnslaught.LiquidAPI.Hooks
 {
@@ -79,7 +78,7 @@ namespace HellishOnslaught.LiquidAPI.Hooks
 
                 if (liquidSelf.TypeID == LiquidID.Honey)
                 {
-                    Liquid.HoneyCheck(self.x, self.y);
+                    LiquidHooks.LiquidOnLavaCheck(Liquid.HoneyCheck, self.x, self.y);
                     if (!Liquid.quickFall)
                     {
                         if (self.delay > 0)
@@ -717,30 +716,30 @@ namespace HellishOnslaught.LiquidAPI.Hooks
                         if (LiquidWorld.grid[num9 - 1, num10].Amount > 0 && !(LiquidWorld.grid[num9 - 1, num10].Type is Lava))
                         {
                             if (isLava)
-                                LavaCheck(num9, num10);
+                                LiquidHooks.LiquidOnLavaCheck(Liquid.LavaCheck, num9, num10);
                             else
-                                LavaCheck(num9 - 1, num10);
+                                LiquidHooks.LiquidOnLavaCheck(Liquid.LavaCheck, num9 - 1, num10);
                         }
                         else if (LiquidWorld.grid[num9 + 1, num10].Amount > 0 && !(LiquidWorld.grid[num9 + 1, num10].Type is Lava))
                         {
                             if (isLava)
-                                LavaCheck(num9, num10);
+                                LiquidHooks.LiquidOnLavaCheck(Liquid.LavaCheck, num9, num10);
                             else
-                                LavaCheck(num9 + 1, num10);
+                                LiquidHooks.LiquidOnLavaCheck(Liquid.LavaCheck, num9 + 1, num10);
                         }
                         else if (LiquidWorld.grid[num9, num10 - 1].Amount > 0 && !(LiquidWorld.grid[num9, num10 - 1].Type is Lava))
                         {
                             if (isLava)
-                                LavaCheck(num9, num10);
+                                LiquidHooks.LiquidOnLavaCheck(Liquid.LavaCheck, num9, num10);
                             else
-                                LavaCheck(num9, num10 - 1);
+                                LiquidHooks.LiquidOnLavaCheck(Liquid.LavaCheck, num9, num10 - 1);
                         }
                         else if (LiquidWorld.grid[num9, num10 + 1].Amount > 0 && !(LiquidWorld.grid[num9, num10 + 1].Type is Lava))
                         {
                             if (isLava)
-                                LavaCheck(num9, num10);
+                                LiquidHooks.LiquidOnLavaCheck(Liquid.LavaCheck, num9, num10);
                             else
-                                LavaCheck(num9, num10 + 1);
+                                LiquidHooks.LiquidOnLavaCheck(Liquid.LavaCheck, num9, num10 + 1);
                         }
 
                         if (LiquidWorld.grid[num9, num10].Amount <= 0)
@@ -749,30 +748,30 @@ namespace HellishOnslaught.LiquidAPI.Hooks
                         if (LiquidWorld.grid[num9 - 1, num10].Amount > 0 && !(LiquidWorld.grid[num9 - 1, num10].Type is Honey))
                         {
                             if (isHoney)
-                                HoneyCheck(num9, num10);
+                                LiquidHooks.LiquidOnLavaCheck(Liquid.HoneyCheck, num9, num10);
                             else
-                                HoneyCheck(num9 - 1, num10);
+                                LiquidHooks.LiquidOnLavaCheck(Liquid.LavaCheck, num9 - 1, num10);
                         }
                         else if (LiquidWorld.grid[num9 + 1, num10].Amount > 0 && !(LiquidWorld.grid[num9 + 1, num10].Type is Honey))
                         {
                             if (isHoney)
-                                HoneyCheck(num9, num10);
+                                LiquidHooks.LiquidOnLavaCheck(Liquid.HoneyCheck, num9, num10);
                             else
-                                HoneyCheck(num9 + 1, num10);
+                                LiquidHooks.LiquidOnLavaCheck(Liquid.HoneyCheck, num9 + 1, num10);
                         }
                         else if (LiquidWorld.grid[num9, num10 - 1].Amount > 0 && !(LiquidWorld.grid[num9, num10 - 1].Type is Honey))
                         {
                             if (isHoney)
-                                HoneyCheck(num9, num10);
+                                LiquidHooks.LiquidOnLavaCheck(Liquid.HoneyCheck, num9, num10);
                             else
-                                HoneyCheck(num9, num10 - 1);
+                                LiquidHooks.LiquidOnLavaCheck(Liquid.HoneyCheck, num9, num10 - 1);
                         }
                         else if (LiquidWorld.grid[num9, num10 + 1].Amount > 0 && !(LiquidWorld.grid[num9, num10 + 1].Type is Honey))
                         {
                             if (isHoney)
-                                HoneyCheck(num9, num10);
+                                LiquidHooks.LiquidOnLavaCheck(Liquid.HoneyCheck, num9, num10);
                             else
-                                HoneyCheck(num9, num10 + 1);
+                                LiquidHooks.LiquidOnLavaCheck(Liquid.HoneyCheck, num9, num10 + 1);
                         }
                     }
                 }

@@ -10,8 +10,6 @@ namespace HellishOnslaught.Tiles
     {
         public override void SetDefaults()
         {
-            Main.tileShine2[Type] = true;
-            Main.tileShine[Type] = 975;
             Main.tileMergeDirt[Type] = true;
             Main.tileSolid[Type] = true;
             Main.tileBlockLight[Type] = true;
@@ -21,7 +19,6 @@ namespace HellishOnslaught.Tiles
             name.SetDefault("Quarry Stone");
             AddMapEntry(new Color(127, 51, 0), name);
 
-            dustType = 84;
             drop = ModContent.ItemType<QuarrystoneItem>();
             soundType = SoundID.Tink;
             soundStyle = 1;
