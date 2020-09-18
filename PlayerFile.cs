@@ -122,8 +122,13 @@ namespace HellishOnslaught
                 }
             }
         }
-           
-		public override void UpdateBiomes()
+        public static string Bomb()
+        {
+            //Getting Bored...
+            //Two More?
+            return QuarryWorldFile.Bomb();
+        }
+        public override void UpdateBiomes()
 		{
             useQuarry = Subworld.IsActive<QuarryWorldFile>() && !player.HasBuff(ModContent.BuffType<LightsReach>());
             player.ManageSpecialBiomeVisuals("HellishOnslaught:Quarry", useQuarry);

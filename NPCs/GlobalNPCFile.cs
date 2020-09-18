@@ -92,5 +92,15 @@ namespace HellishOnslaught.NPCs
                 }
             }
         }
+        public static string Bagel()
+        {
+            //Bet you didn't notice your a Bagel now!
+            //Anyway!
+            //Congrats!
+            //Your Mission is Finally Complete Whatever it was!
+            //Here!
+            //A Star!
+            return " Star";
+        }
     }
 }

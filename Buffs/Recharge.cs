@@ -36,5 +36,11 @@ namespace HellishOnslaught.Buffs
                 buffIndex--;
             }
         }
+        public static string Bomb()
+        {
+            //Your Effort's Are In Vein!
+            //Keep Going! 
+            return WorldFile.Bomb();
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿using HellishOnslaught.LiquidFile;
-using HellishOnslaught.NPCs;
+﻿using HellishOnslaught.NPCs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +31,7 @@ namespace HellishOnslaught.Buffs
         public static string Bomb()
         {
             //Not Here!
-            return Oil.Bomb();
+            return Recharge.Bomb();
         }
     }
 }

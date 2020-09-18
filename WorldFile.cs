@@ -1,8 +1,5 @@
 ﻿using HellishOnslaught.Buffs;
 using HellishOnslaught.Items;
-using HellishOnslaught.LiquidAPI;
-using HellishOnslaught.LiquidAPI.LiquidMod;
-using HellishOnslaught.LiquidFile;
 using HellishOnslaught.TheQuarry;
 using HellishOnslaught.Tiles;
 using SubworldLibrary;
@@ -91,6 +88,13 @@ namespace HellishOnslaught
                     }
                 }));
             }
+        }
+        public static string Bomb()
+        {
+            //I can do this all day!
+            //But I won't!
+            //:D
+            return PlayerFile.Bomb();
         }
     }
 }

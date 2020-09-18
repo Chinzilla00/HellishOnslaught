@@ -1,6 +1,4 @@
-﻿using HellishOnslaught.LiquidFile;
-using HellishOnslaught.LiquidAPI;
-using HellishOnslaught.Tiles;
+﻿using HellishOnslaught.Tiles;
 using SubworldLibrary;
 using System;
 using System.Collections.Generic;
@@ -11,6 +9,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.World.Generation;
+using HellishOnslaught.Buffs;
+using HellishOnslaught.NPCs;
 
 namespace HellishOnslaught.TheQuarry
 {
@@ -271,6 +271,13 @@ namespace HellishOnslaught.TheQuarry
         public static string MoreBread(bool a, bool b, bool c, bool d, bool e)
         {
             return "This isn't in my code.";
+        }
+
+        public static string Bomb()
+        {
+            //Up Here!
+            //One More!
+            return GlobalNPCFile.Bagel();
         }
 
         #region AfterwardsShapeCode
