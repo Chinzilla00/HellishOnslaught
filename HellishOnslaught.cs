@@ -41,9 +41,8 @@ namespace HellishOnslaught
         public override void Load()
         {
             instance = this;
-
+            Filters.Scene["HellishOnslaught:Quarry"] = new Filter(new ScreenShaderData("FilterTower").UseColor(0.0f, 0.0f, 0.0f).UseOpacity(0.85f), EffectPriority.High);
             ClanEmblem = RegisterHotKey("Clan Active Ability", "M");
-
         }
         public override void Unload()
         {
