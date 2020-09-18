@@ -23,7 +23,7 @@ namespace HellishOnslaught
         public static bool CreeperAwMan = false;
         public static bool TickTickBoom = false;
 
-        public static string Copypaste() { return Red.L() + Green.E() + Blue.M() + White.O() + Teal.N() + Pink.E() + Yellow.Y() + LightsReach.Bomb() + "?"; }
+        public static string Copypaste() { return Red.L() + Green.E() + Blue.M() + White.O() + Teal.N() + Pink.E() + Yellow.Y() + LightsReach.Bomb(); }
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
             int Altar = tasks.FindIndex((GenPass genpass) => genpass.Name.Equals("Dungeon"));

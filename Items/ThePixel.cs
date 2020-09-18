@@ -111,14 +111,15 @@ namespace HellishOnslaught.Items
                 item.value = 10000000;
                 item.useStyle = ItemUseStyleID.HoldingOut;
                 item.noMelee = true;
-                item.damage = 900001;
+                item.damage = 9001;
                 item.magic = true;
                 item.useTime = 30;
                 item.useAnimation = 30;
-                item.autoReuse = true;
+                item.noUseGraphic = true;
+                item.channel = true;
                 item.shoot = ModContent.ProjectileType<BallpeenProjectile>();
 
-                Texture2D texture = HellishOnslaught.instance.GetTexture("Items/ThePixel");
+                Texture2D texture = Main.itemTexture[item.type];
                 var shabagel = 1.5f;
                 var bloop = new Vector2(origin.X + 15, origin.Y + 12);
                 spriteBatch.Draw(texture, new Vector2(position.X, position.Y), null, Colors(2), 0f, bloop, new Vector2(scale), SpriteEffects.None, 0);
@@ -345,9 +346,9 @@ namespace HellishOnslaught.Items
                 item.width = 40;
                 item.height = 32;
 
-                Texture2D texture = HellishOnslaught.instance.GetTexture("Items/ThePixel");
-                var shabagel = 1.5f;
-                var position =  item.position;
+                Texture2D texture = Main.itemTexture[item.type];
+                var shabagel = 2f;
+                var position = item.position - Main.screenPosition;
                 spriteBatch.Draw(texture, new Vector2(position.X, position.Y), Colors(2));
                 spriteBatch.Draw(texture, new Vector2(position.X + (1 * shabagel), position.Y), Colors(1));
                 spriteBatch.Draw(texture, new Vector2(position.X + (10 * shabagel), position.Y), Colors(5));
@@ -750,238 +751,271 @@ namespace HellishOnslaught.Items
         public override void SetDefaults()
         {
             projectile.width = 40;
-            projectile.height = 40;
+            projectile.height = 32;
             projectile.friendly = false;
             projectile.hostile = false;
             projectile.penetrate = -1;
             projectile.tileCollide = false;
             projectile.magic = true;
             projectile.ignoreWater = true;
-            projectile.alpha = 255;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            Texture2D texture = HellishOnslaught.instance.GetTexture("Items/ThePixel");
-            var shabagel = 1.5f;
-            var position = projectile.position;
-            spriteBatch.Draw(texture, new Vector2(position.X, position.Y), ThePixel.Colors(2));
-            spriteBatch.Draw(texture, new Vector2(position.X + (1 * shabagel), position.Y), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (10 * shabagel), position.Y), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X, position.Y + (1 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (1 * shabagel), position.Y + (1 * shabagel)), ThePixel.Colors(2));
-            spriteBatch.Draw(texture, new Vector2(position.X + (2 * shabagel), position.Y + (1 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (9 * shabagel), position.Y + (1 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (10 * shabagel), position.Y + (1 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (15 * shabagel), position.Y + (1 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (16 * shabagel), position.Y + (1 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (17 * shabagel), position.Y + (1 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (1 * shabagel), position.Y + (2 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (2 * shabagel), position.Y + (2 * shabagel)), ThePixel.Colors(2));
-            spriteBatch.Draw(texture, new Vector2(position.X + (3 * shabagel), position.Y + (2 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (4 * shabagel), position.Y + (2 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (5 * shabagel), position.Y + (2 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (6 * shabagel), position.Y + (2 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (7 * shabagel), position.Y + (2 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (8 * shabagel), position.Y + (2 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (9 * shabagel), position.Y + (2 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (10 * shabagel), position.Y + (2 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (11 * shabagel), position.Y + (2 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (12 * shabagel), position.Y + (2 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (13 * shabagel), position.Y + (2 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (14 * shabagel), position.Y + (2 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (15 * shabagel), position.Y + (2 * shabagel)), ThePixel.Colors(16));
-            spriteBatch.Draw(texture, new Vector2(position.X + (16 * shabagel), position.Y + (2 * shabagel)), ThePixel.Colors(16));
-            spriteBatch.Draw(texture, new Vector2(position.X + (17 * shabagel), position.Y + (2 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (18 * shabagel), position.Y + (2 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (1 * shabagel), position.Y + (3 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (2 * shabagel), position.Y + (3 * shabagel)), ThePixel.Colors(12));
-            spriteBatch.Draw(texture, new Vector2(position.X + (3 * shabagel), position.Y + (3 * shabagel)), ThePixel.Colors(17));
-            spriteBatch.Draw(texture, new Vector2(position.X + (4 * shabagel), position.Y + (3 * shabagel)), ThePixel.Colors(0));
-            spriteBatch.Draw(texture, new Vector2(position.X + (5 * shabagel), position.Y + (3 * shabagel)), ThePixel.Colors(17));
-            spriteBatch.Draw(texture, new Vector2(position.X + (6 * shabagel), position.Y + (3 * shabagel)), ThePixel.Colors(0));
-            spriteBatch.Draw(texture, new Vector2(position.X + (7 * shabagel), position.Y + (3 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (8 * shabagel), position.Y + (3 * shabagel)), ThePixel.Colors(3));
-            spriteBatch.Draw(texture, new Vector2(position.X + (9 * shabagel), position.Y + (3 * shabagel)), ThePixel.Colors(17));
-            spriteBatch.Draw(texture, new Vector2(position.X + (10 * shabagel), position.Y + (3 * shabagel)), ThePixel.Colors(8));
-            spriteBatch.Draw(texture, new Vector2(position.X + (11 * shabagel), position.Y + (3 * shabagel)), ThePixel.Colors(8));
-            spriteBatch.Draw(texture, new Vector2(position.X + (12 * shabagel), position.Y + (3 * shabagel)), ThePixel.Colors(17));
-            spriteBatch.Draw(texture, new Vector2(position.X + (13 * shabagel), position.Y + (3 * shabagel)), ThePixel.Colors(3));
-            spriteBatch.Draw(texture, new Vector2(position.X + (14 * shabagel), position.Y + (3 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (15 * shabagel), position.Y + (3 * shabagel)), ThePixel.Colors(13));
-            spriteBatch.Draw(texture, new Vector2(position.X + (16 * shabagel), position.Y + (3 * shabagel)), ThePixel.Colors(13));
-            spriteBatch.Draw(texture, new Vector2(position.X + (17 * shabagel), position.Y + (3 * shabagel)), ThePixel.Colors(13));
-            spriteBatch.Draw(texture, new Vector2(position.X + (18 * shabagel), position.Y + (3 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (19 * shabagel), position.Y + (3 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (1 * shabagel), position.Y + (4 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (2 * shabagel), position.Y + (4 * shabagel)), ThePixel.Colors(12));
-            spriteBatch.Draw(texture, new Vector2(position.X + (3 * shabagel), position.Y + (4 * shabagel)), ThePixel.Colors(12));
-            spriteBatch.Draw(texture, new Vector2(position.X + (4 * shabagel), position.Y + (4 * shabagel)), ThePixel.Colors(12));
-            spriteBatch.Draw(texture, new Vector2(position.X + (5 * shabagel), position.Y + (4 * shabagel)), ThePixel.Colors(11));
-            spriteBatch.Draw(texture, new Vector2(position.X + (6 * shabagel), position.Y + (4 * shabagel)), ThePixel.Colors(12));
-            spriteBatch.Draw(texture, new Vector2(position.X + (7 * shabagel), position.Y + (4 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (8 * shabagel), position.Y + (4 * shabagel)), ThePixel.Colors(17));
-            spriteBatch.Draw(texture, new Vector2(position.X + (9 * shabagel), position.Y + (4 * shabagel)), ThePixel.Colors(6));
-            spriteBatch.Draw(texture, new Vector2(position.X + (10 * shabagel), position.Y + (4 * shabagel)), ThePixel.Colors(10));
-            spriteBatch.Draw(texture, new Vector2(position.X + (11 * shabagel), position.Y + (4 * shabagel)), ThePixel.Colors(9));
-            spriteBatch.Draw(texture, new Vector2(position.X + (12 * shabagel), position.Y + (4 * shabagel)), ThePixel.Colors(8));
-            spriteBatch.Draw(texture, new Vector2(position.X + (13 * shabagel), position.Y + (4 * shabagel)), ThePixel.Colors(17));
-            spriteBatch.Draw(texture, new Vector2(position.X + (14 * shabagel), position.Y + (4 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (15 * shabagel), position.Y + (4 * shabagel)), ThePixel.Colors(16));
-            spriteBatch.Draw(texture, new Vector2(position.X + (16 * shabagel), position.Y + (4 * shabagel)), ThePixel.Colors(16));
-            spriteBatch.Draw(texture, new Vector2(position.X + (17 * shabagel), position.Y + (4 * shabagel)), ThePixel.Colors(13));
-            spriteBatch.Draw(texture, new Vector2(position.X + (18 * shabagel), position.Y + (4 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (19 * shabagel), position.Y + (4 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (1 * shabagel), position.Y + (5 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (2 * shabagel), position.Y + (5 * shabagel)), ThePixel.Colors(2));
-            spriteBatch.Draw(texture, new Vector2(position.X + (3 * shabagel), position.Y + (5 * shabagel)), ThePixel.Colors(17));
-            spriteBatch.Draw(texture, new Vector2(position.X + (4 * shabagel), position.Y + (5 * shabagel)), ThePixel.Colors(0));
-            spriteBatch.Draw(texture, new Vector2(position.X + (5 * shabagel), position.Y + (5 * shabagel)), ThePixel.Colors(17));
-            spriteBatch.Draw(texture, new Vector2(position.X + (6 * shabagel), position.Y + (5 * shabagel)), ThePixel.Colors(0));
-            spriteBatch.Draw(texture, new Vector2(position.X + (7 * shabagel), position.Y + (5 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (8 * shabagel), position.Y + (5 * shabagel)), ThePixel.Colors(6));
-            spriteBatch.Draw(texture, new Vector2(position.X + (9 * shabagel), position.Y + (5 * shabagel)), ThePixel.Colors(7));
-            spriteBatch.Draw(texture, new Vector2(position.X + (10 * shabagel), position.Y + (5 * shabagel)), ThePixel.Colors(9));
-            spriteBatch.Draw(texture, new Vector2(position.X + (11 * shabagel), position.Y + (5 * shabagel)), ThePixel.Colors(10));
-            spriteBatch.Draw(texture, new Vector2(position.X + (12 * shabagel), position.Y + (5 * shabagel)), ThePixel.Colors(9));
-            spriteBatch.Draw(texture, new Vector2(position.X + (13 * shabagel), position.Y + (5 * shabagel)), ThePixel.Colors(8));
-            spriteBatch.Draw(texture, new Vector2(position.X + (14 * shabagel), position.Y + (5 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (15 * shabagel), position.Y + (5 * shabagel)), ThePixel.Colors(13));
-            spriteBatch.Draw(texture, new Vector2(position.X + (16 * shabagel), position.Y + (5 * shabagel)), ThePixel.Colors(16));
-            spriteBatch.Draw(texture, new Vector2(position.X + (17 * shabagel), position.Y + (5 * shabagel)), ThePixel.Colors(16));
-            spriteBatch.Draw(texture, new Vector2(position.X + (18 * shabagel), position.Y + (5 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (19 * shabagel), position.Y + (5 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X, position.Y + (6 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (1 * shabagel), position.Y + (6 * shabagel)), ThePixel.Colors(12));
-            spriteBatch.Draw(texture, new Vector2(position.X + (2 * shabagel), position.Y + (6 * shabagel)), ThePixel.Colors(12));
-            spriteBatch.Draw(texture, new Vector2(position.X + (3 * shabagel), position.Y + (6 * shabagel)), ThePixel.Colors(12));
-            spriteBatch.Draw(texture, new Vector2(position.X + (4 * shabagel), position.Y + (6 * shabagel)), ThePixel.Colors(12));
-            spriteBatch.Draw(texture, new Vector2(position.X + (5 * shabagel), position.Y + (6 * shabagel)), ThePixel.Colors(11));
-            spriteBatch.Draw(texture, new Vector2(position.X + (6 * shabagel), position.Y + (6 * shabagel)), ThePixel.Colors(12));
-            spriteBatch.Draw(texture, new Vector2(position.X + (7 * shabagel), position.Y + (6 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (8 * shabagel), position.Y + (6 * shabagel)), ThePixel.Colors(6));
-            spriteBatch.Draw(texture, new Vector2(position.X + (9 * shabagel), position.Y + (6 * shabagel)), ThePixel.Colors(8));
-            spriteBatch.Draw(texture, new Vector2(position.X + (10 * shabagel), position.Y + (6 * shabagel)), ThePixel.Colors(7));
-            spriteBatch.Draw(texture, new Vector2(position.X + (11 * shabagel), position.Y + (6 * shabagel)), ThePixel.Colors(9));
-            spriteBatch.Draw(texture, new Vector2(position.X + (12 * shabagel), position.Y + (6 * shabagel)), ThePixel.Colors(7));
-            spriteBatch.Draw(texture, new Vector2(position.X + (13 * shabagel), position.Y + (6 * shabagel)), ThePixel.Colors(8));
-            spriteBatch.Draw(texture, new Vector2(position.X + (14 * shabagel), position.Y + (6 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (15 * shabagel), position.Y + (6 * shabagel)), ThePixel.Colors(15));
-            spriteBatch.Draw(texture, new Vector2(position.X + (16 * shabagel), position.Y + (6 * shabagel)), ThePixel.Colors(13));
-            spriteBatch.Draw(texture, new Vector2(position.X + (17 * shabagel), position.Y + (6 * shabagel)), ThePixel.Colors(16));
-            spriteBatch.Draw(texture, new Vector2(position.X + (18 * shabagel), position.Y + (6 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (1 * shabagel), position.Y + (7 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (2 * shabagel), position.Y + (7 * shabagel)), ThePixel.Colors(0));
-            spriteBatch.Draw(texture, new Vector2(position.X + (3 * shabagel), position.Y + (7 * shabagel)), ThePixel.Colors(2));
-            spriteBatch.Draw(texture, new Vector2(position.X + (4 * shabagel), position.Y + (7 * shabagel)), ThePixel.Colors(0));
-            spriteBatch.Draw(texture, new Vector2(position.X + (5 * shabagel), position.Y + (7 * shabagel)), ThePixel.Colors(0));
-            spriteBatch.Draw(texture, new Vector2(position.X + (6 * shabagel), position.Y + (7 * shabagel)), ThePixel.Colors(2));
-            spriteBatch.Draw(texture, new Vector2(position.X + (7 * shabagel), position.Y + (7 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (8 * shabagel), position.Y + (7 * shabagel)), ThePixel.Colors(17));
-            spriteBatch.Draw(texture, new Vector2(position.X + (9 * shabagel), position.Y + (7 * shabagel)), ThePixel.Colors(6));
-            spriteBatch.Draw(texture, new Vector2(position.X + (10 * shabagel), position.Y + (7 * shabagel)), ThePixel.Colors(8));
-            spriteBatch.Draw(texture, new Vector2(position.X + (11 * shabagel), position.Y + (7 * shabagel)), ThePixel.Colors(10));
-            spriteBatch.Draw(texture, new Vector2(position.X + (12 * shabagel), position.Y + (7 * shabagel)), ThePixel.Colors(6));
-            spriteBatch.Draw(texture, new Vector2(position.X + (13 * shabagel), position.Y + (7 * shabagel)), ThePixel.Colors(17));
-            spriteBatch.Draw(texture, new Vector2(position.X + (14 * shabagel), position.Y + (7 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (15 * shabagel), position.Y + (7 * shabagel)), ThePixel.Colors(15));
-            spriteBatch.Draw(texture, new Vector2(position.X + (16 * shabagel), position.Y + (7 * shabagel)), ThePixel.Colors(15));
-            spriteBatch.Draw(texture, new Vector2(position.X + (17 * shabagel), position.Y + (7 * shabagel)), ThePixel.Colors(16));
-            spriteBatch.Draw(texture, new Vector2(position.X + (18 * shabagel), position.Y + (7 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (1 * shabagel), position.Y + (8 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (2 * shabagel), position.Y + (8 * shabagel)), ThePixel.Colors(12));
-            spriteBatch.Draw(texture, new Vector2(position.X + (3 * shabagel), position.Y + (8 * shabagel)), ThePixel.Colors(12));
-            spriteBatch.Draw(texture, new Vector2(position.X + (4 * shabagel), position.Y + (8 * shabagel)), ThePixel.Colors(12));
-            spriteBatch.Draw(texture, new Vector2(position.X + (5 * shabagel), position.Y + (8 * shabagel)), ThePixel.Colors(11));
-            spriteBatch.Draw(texture, new Vector2(position.X + (6 * shabagel), position.Y + (8 * shabagel)), ThePixel.Colors(12));
-            spriteBatch.Draw(texture, new Vector2(position.X + (7 * shabagel), position.Y + (8 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (8 * shabagel), position.Y + (8 * shabagel)), ThePixel.Colors(3));
-            spriteBatch.Draw(texture, new Vector2(position.X + (9 * shabagel), position.Y + (8 * shabagel)), ThePixel.Colors(17));
-            spriteBatch.Draw(texture, new Vector2(position.X + (10 * shabagel), position.Y + (8 * shabagel)), ThePixel.Colors(6));
-            spriteBatch.Draw(texture, new Vector2(position.X + (11 * shabagel), position.Y + (8 * shabagel)), ThePixel.Colors(6));
-            spriteBatch.Draw(texture, new Vector2(position.X + (12 * shabagel), position.Y + (8 * shabagel)), ThePixel.Colors(17));
-            spriteBatch.Draw(texture, new Vector2(position.X + (13 * shabagel), position.Y + (8 * shabagel)), ThePixel.Colors(3));
-            spriteBatch.Draw(texture, new Vector2(position.X + (14 * shabagel), position.Y + (8 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (15 * shabagel), position.Y + (8 * shabagel)), ThePixel.Colors(4));
-            spriteBatch.Draw(texture, new Vector2(position.X + (16 * shabagel), position.Y + (8 * shabagel)), ThePixel.Colors(4));
-            spriteBatch.Draw(texture, new Vector2(position.X + (17 * shabagel), position.Y + (8 * shabagel)), ThePixel.Colors(4));
-            spriteBatch.Draw(texture, new Vector2(position.X + (18 * shabagel), position.Y + (8 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (2 * shabagel), position.Y + (9 * shabagel)), ThePixel.Colors(24));
-            spriteBatch.Draw(texture, new Vector2(position.X + (3 * shabagel), position.Y + (9 * shabagel)), ThePixel.Colors(19));
-            spriteBatch.Draw(texture, new Vector2(position.X + (4 * shabagel), position.Y + (9 * shabagel)), ThePixel.Colors(19));
-            spriteBatch.Draw(texture, new Vector2(position.X + (5 * shabagel), position.Y + (9 * shabagel)), ThePixel.Colors(18));
-            spriteBatch.Draw(texture, new Vector2(position.X + (6 * shabagel), position.Y + (9 * shabagel)), ThePixel.Colors(24));
-            spriteBatch.Draw(texture, new Vector2(position.X + (8 * shabagel), position.Y + (9 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (9 * shabagel), position.Y + (9 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (10 * shabagel), position.Y + (9 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (11 * shabagel), position.Y + (9 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (12 * shabagel), position.Y + (9 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (13 * shabagel), position.Y + (9 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (14 * shabagel), position.Y + (9 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (15 * shabagel), position.Y + (9 * shabagel)), ThePixel.Colors(16));
-            spriteBatch.Draw(texture, new Vector2(position.X + (16 * shabagel), position.Y + (9 * shabagel)), ThePixel.Colors(15));
-            spriteBatch.Draw(texture, new Vector2(position.X + (17 * shabagel), position.Y + (9 * shabagel)), ThePixel.Colors(13));
-            spriteBatch.Draw(texture, new Vector2(position.X + (18 * shabagel), position.Y + (9 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (1 * shabagel), position.Y + (10 * shabagel)), ThePixel.Colors(24));
-            spriteBatch.Draw(texture, new Vector2(position.X + (2 * shabagel), position.Y + (10 * shabagel)), ThePixel.Colors(22));
-            spriteBatch.Draw(texture, new Vector2(position.X + (3 * shabagel), position.Y + (10 * shabagel)), ThePixel.Colors(20));
-            spriteBatch.Draw(texture, new Vector2(position.X + (4 * shabagel), position.Y + (10 * shabagel)), ThePixel.Colors(19));
-            spriteBatch.Draw(texture, new Vector2(position.X + (5 * shabagel), position.Y + (10 * shabagel)), ThePixel.Colors(24));
-            spriteBatch.Draw(texture, new Vector2(position.X + (7 * shabagel), position.Y + (10 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (9 * shabagel), position.Y + (10 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (10 * shabagel), position.Y + (10 * shabagel)), ThePixel.Colors(3));
-            spriteBatch.Draw(texture, new Vector2(position.X + (11 * shabagel), position.Y + (10 * shabagel)), ThePixel.Colors(3));
-            spriteBatch.Draw(texture, new Vector2(position.X + (12 * shabagel), position.Y + (10 * shabagel)), ThePixel.Colors(2));
-            spriteBatch.Draw(texture, new Vector2(position.X + (13 * shabagel), position.Y + (10 * shabagel)), ThePixel.Colors(2));
-            spriteBatch.Draw(texture, new Vector2(position.X + (14 * shabagel), position.Y + (10 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (15 * shabagel), position.Y + (10 * shabagel)), ThePixel.Colors(14));
-            spriteBatch.Draw(texture, new Vector2(position.X + (16 * shabagel), position.Y + (10 * shabagel)), ThePixel.Colors(13));
-            spriteBatch.Draw(texture, new Vector2(position.X + (17 * shabagel), position.Y + (10 * shabagel)), ThePixel.Colors(16));
-            spriteBatch.Draw(texture, new Vector2(position.X + (18 * shabagel), position.Y + (10 * shabagel)), ThePixel.Colors(5));
-            spriteBatch.Draw(texture, new Vector2(position.X + (1 * shabagel), position.Y + (11 * shabagel)), ThePixel.Colors(24));
-            spriteBatch.Draw(texture, new Vector2(position.X + (2 * shabagel), position.Y + (11 * shabagel)), ThePixel.Colors(23));
-            spriteBatch.Draw(texture, new Vector2(position.X + (3 * shabagel), position.Y + (11 * shabagel)), ThePixel.Colors(21));
-            spriteBatch.Draw(texture, new Vector2(position.X + (4 * shabagel), position.Y + (11 * shabagel)), ThePixel.Colors(21));
-            spriteBatch.Draw(texture, new Vector2(position.X + (5 * shabagel), position.Y + (11 * shabagel)), ThePixel.Colors(24));
-            spriteBatch.Draw(texture, new Vector2(position.X + (6 * shabagel), position.Y + (11 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (7 * shabagel), position.Y + (11 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (8 * shabagel), position.Y + (11 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (10 * shabagel), position.Y + (11 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (11 * shabagel), position.Y + (11 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (12 * shabagel), position.Y + (11 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (13 * shabagel), position.Y + (11 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (14 * shabagel), position.Y + (11 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (15 * shabagel), position.Y + (11 * shabagel)), ThePixel.Colors(15));
-            spriteBatch.Draw(texture, new Vector2(position.X + (16 * shabagel), position.Y + (11 * shabagel)), ThePixel.Colors(16));
-            spriteBatch.Draw(texture, new Vector2(position.X + (17 * shabagel), position.Y + (11 * shabagel)), ThePixel.Colors(15));
-            spriteBatch.Draw(texture, new Vector2(position.X + (18 * shabagel), position.Y + (11 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X, position.Y + (12 * shabagel)), ThePixel.Colors(24));
-            spriteBatch.Draw(texture, new Vector2(position.X + (1 * shabagel), position.Y + (12 * shabagel)), ThePixel.Colors(23));
-            spriteBatch.Draw(texture, new Vector2(position.X + (2 * shabagel), position.Y + (12 * shabagel)), ThePixel.Colors(20));
-            spriteBatch.Draw(texture, new Vector2(position.X + (3 * shabagel), position.Y + (12 * shabagel)), ThePixel.Colors(21));
-            spriteBatch.Draw(texture, new Vector2(position.X + (4 * shabagel), position.Y + (12 * shabagel)), ThePixel.Colors(24));
-            spriteBatch.Draw(texture, new Vector2(position.X + (15 * shabagel), position.Y + (12 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (16 * shabagel), position.Y + (12 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X + (17 * shabagel), position.Y + (12 * shabagel)), ThePixel.Colors(1));
-            spriteBatch.Draw(texture, new Vector2(position.X, position.Y + (13 * shabagel)), ThePixel.Colors(24));
-            spriteBatch.Draw(texture, new Vector2(position.X + (1 * shabagel), position.Y + (13 * shabagel)), ThePixel.Colors(19));
-            spriteBatch.Draw(texture, new Vector2(position.X + (2 * shabagel), position.Y + (13 * shabagel)), ThePixel.Colors(23));
-            spriteBatch.Draw(texture, new Vector2(position.X + (3 * shabagel), position.Y + (13 * shabagel)), ThePixel.Colors(23));
-            spriteBatch.Draw(texture, new Vector2(position.X + (4 * shabagel), position.Y + (13 * shabagel)), ThePixel.Colors(21));
-            spriteBatch.Draw(texture, new Vector2(position.X + (5 * shabagel), position.Y + (13 * shabagel)), ThePixel.Colors(24));
-            spriteBatch.Draw(texture, new Vector2(position.X, position.Y + (14 * shabagel)), ThePixel.Colors(24));
-            spriteBatch.Draw(texture, new Vector2(position.X + (1 * shabagel), position.Y + (14 * shabagel)), ThePixel.Colors(20));
-            spriteBatch.Draw(texture, new Vector2(position.X + (2 * shabagel), position.Y + (14 * shabagel)), ThePixel.Colors(19));
-            spriteBatch.Draw(texture, new Vector2(position.X + (3 * shabagel), position.Y + (14 * shabagel)), ThePixel.Colors(19));
-            spriteBatch.Draw(texture, new Vector2(position.X + (4 * shabagel), position.Y + (14 * shabagel)), ThePixel.Colors(19));
-            spriteBatch.Draw(texture, new Vector2(position.X + (5 * shabagel), position.Y + (14 * shabagel)), ThePixel.Colors(24));
-            spriteBatch.Draw(texture, new Vector2(position.X + (1 * shabagel), position.Y + (15 * shabagel)), ThePixel.Colors(24));
-            spriteBatch.Draw(texture, new Vector2(position.X + (2 * shabagel), position.Y + (15 * shabagel)), ThePixel.Colors(24));
-            spriteBatch.Draw(texture, new Vector2(position.X + (3 * shabagel), position.Y + (15 * shabagel)), ThePixel.Colors(24));
-            spriteBatch.Draw(texture, new Vector2(position.X + (4 * shabagel), position.Y + (15 * shabagel)), ThePixel.Colors(24));
-            return true;
-        }
+            Texture2D texture = Main.projectileTexture[projectile.type];
+            SpriteEffects spriteEffects = SpriteEffects.None;
+            if (projectile.spriteDirection == -1)
+            {
+                spriteEffects = SpriteEffects.FlipHorizontally;
+            }
+            Rectangle sourceRectangle = new Rectangle(0, 0, texture.Width, texture.Height);
+            Vector2 origin = sourceRectangle.Size() / 2f;
 
+            projectile.scale = 2f;
+
+            var shabagel = projectile.spriteDirection == 1 ? (int)projectile.scale : (int)-projectile.scale;
+            var shabagel2 = projectile.spriteDirection == 1 ? (int)shabagel : (int)-shabagel;
+            var position = projectile.Center - Main.screenPosition + new Vector2(projectile.spriteDirection == 1 ? 3f : -3f, -12f);
+
+            Player player = Main.player[projectile.owner];
+
+            float num1 = 12f;
+            Vector2 vector2 = new Vector2(player.position.X + player.width * 0.5f, player.position.Y + player.height * 0.5f);
+            float f1 = Main.mouseX + Main.screenPosition.X - vector2.X;
+            float f2 = Main.mouseY + Main.screenPosition.Y - vector2.Y;
+            if (player.gravDir == -1.0)
+                f2 = Main.screenPosition.Y + Main.screenHeight - Main.mouseY - vector2.Y;
+            float num4 = (float)Math.Sqrt(f1 * (double)f1 + f2 * (double)f2);
+            float num5;
+            if (float.IsNaN(f1) && float.IsNaN(f2) || f1 == 0.0 && f2 == 0.0)
+            {
+                f1 = player.direction;
+                f2 = 0.0f;
+                num5 = num1;
+            }
+            else
+                num5 = num1 / num4;
+            float SpeedX = f1 * num5;
+            float SpeedY = f2 * num5;
+
+            var Vloop = new Vector2(SpeedX, SpeedY).ToRotation() + (projectile.spriteDirection == 1 ? MathHelper.ToRadians(0f) : MathHelper.ToRadians(180f));
+
+            spriteBatch.Draw(texture, new Vector2((int)position.X, (int)position.Y).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(2), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (1 * shabagel), (int)position.Y).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (10 * shabagel), (int)position.Y).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X, (int)position.Y + (1 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (1 * shabagel), (int)position.Y + (1 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(2), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (2 * shabagel), (int)position.Y + (1 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (9 * shabagel), (int)position.Y + (1 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (10 * shabagel), (int)position.Y + (1 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (15 * shabagel), (int)position.Y + (1 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (16 * shabagel), (int)position.Y + (1 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (17 * shabagel), (int)position.Y + (1 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (1 * shabagel), (int)position.Y + (2 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (2 * shabagel), (int)position.Y + (2 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(2), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (3 * shabagel), (int)position.Y + (2 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (4 * shabagel), (int)position.Y + (2 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (5 * shabagel), (int)position.Y + (2 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (6 * shabagel), (int)position.Y + (2 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (7 * shabagel), (int)position.Y + (2 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (8 * shabagel), (int)position.Y + (2 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (9 * shabagel), (int)position.Y + (2 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (10 * shabagel), (int)position.Y + (2 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (11 * shabagel), (int)position.Y + (2 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (12 * shabagel), (int)position.Y + (2 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (13 * shabagel), (int)position.Y + (2 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (14 * shabagel), (int)position.Y + (2 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (15 * shabagel), (int)position.Y + (2 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(16), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (16 * shabagel), (int)position.Y + (2 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(16), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (17 * shabagel), (int)position.Y + (2 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (18 * shabagel), (int)position.Y + (2 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (1 * shabagel), (int)position.Y + (3 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (2 * shabagel), (int)position.Y + (3 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(12), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (3 * shabagel), (int)position.Y + (3 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(17), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (4 * shabagel), (int)position.Y + (3 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(0), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (5 * shabagel), (int)position.Y + (3 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(17), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (6 * shabagel), (int)position.Y + (3 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(0), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (7 * shabagel), (int)position.Y + (3 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (8 * shabagel), (int)position.Y + (3 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(3), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (9 * shabagel), (int)position.Y + (3 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(17), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (10 * shabagel), (int)position.Y + (3 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(8), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (11 * shabagel), (int)position.Y + (3 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(8), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (12 * shabagel), (int)position.Y + (3 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(17), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (13 * shabagel), (int)position.Y + (3 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(3), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (14 * shabagel), (int)position.Y + (3 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (15 * shabagel), (int)position.Y + (3 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(13), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (16 * shabagel), (int)position.Y + (3 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(13), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (17 * shabagel), (int)position.Y + (3 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(13), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (18 * shabagel), (int)position.Y + (3 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (19 * shabagel), (int)position.Y + (3 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (1 * shabagel), (int)position.Y + (4 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (2 * shabagel), (int)position.Y + (4 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(12), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (3 * shabagel), (int)position.Y + (4 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(12), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (4 * shabagel), (int)position.Y + (4 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(12), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (5 * shabagel), (int)position.Y + (4 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(11), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (6 * shabagel), (int)position.Y + (4 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(12), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (7 * shabagel), (int)position.Y + (4 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (8 * shabagel), (int)position.Y + (4 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(17), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (9 * shabagel), (int)position.Y + (4 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(6), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (10 * shabagel), (int)position.Y + (4 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(10), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (11 * shabagel), (int)position.Y + (4 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(9), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (12 * shabagel), (int)position.Y + (4 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(8), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (13 * shabagel), (int)position.Y + (4 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(17), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (14 * shabagel), (int)position.Y + (4 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (15 * shabagel), (int)position.Y + (4 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(16), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (16 * shabagel), (int)position.Y + (4 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(16), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (17 * shabagel), (int)position.Y + (4 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(13), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (18 * shabagel), (int)position.Y + (4 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (19 * shabagel), (int)position.Y + (4 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (1 * shabagel), (int)position.Y + (5 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (2 * shabagel), (int)position.Y + (5 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(2), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (3 * shabagel), (int)position.Y + (5 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(17), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (4 * shabagel), (int)position.Y + (5 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(0), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (5 * shabagel), (int)position.Y + (5 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(17), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (6 * shabagel), (int)position.Y + (5 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(0), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (7 * shabagel), (int)position.Y + (5 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (8 * shabagel), (int)position.Y + (5 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(6), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (9 * shabagel), (int)position.Y + (5 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(7), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (10 * shabagel), (int)position.Y + (5 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(9), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (11 * shabagel), (int)position.Y + (5 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(10), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (12 * shabagel), (int)position.Y + (5 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(9), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (13 * shabagel), (int)position.Y + (5 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(8), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (14 * shabagel), (int)position.Y + (5 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (15 * shabagel), (int)position.Y + (5 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(13), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (16 * shabagel), (int)position.Y + (5 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(16), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (17 * shabagel), (int)position.Y + (5 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(16), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (18 * shabagel), (int)position.Y + (5 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (19 * shabagel), (int)position.Y + (5 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X, (int)position.Y + (6 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (1 * shabagel), (int)position.Y + (6 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(12), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (2 * shabagel), (int)position.Y + (6 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(12), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (3 * shabagel), (int)position.Y + (6 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(12), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (4 * shabagel), (int)position.Y + (6 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(12), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (5 * shabagel), (int)position.Y + (6 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(11), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (6 * shabagel), (int)position.Y + (6 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(12), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (7 * shabagel), (int)position.Y + (6 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (8 * shabagel), (int)position.Y + (6 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(6), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (9 * shabagel), (int)position.Y + (6 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(8), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (10 * shabagel), (int)position.Y + (6 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(7), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (11 * shabagel), (int)position.Y + (6 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(9), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (12 * shabagel), (int)position.Y + (6 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(7), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (13 * shabagel), (int)position.Y + (6 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(8), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (14 * shabagel), (int)position.Y + (6 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (15 * shabagel), (int)position.Y + (6 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(15), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (16 * shabagel), (int)position.Y + (6 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(13), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (17 * shabagel), (int)position.Y + (6 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(16), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (18 * shabagel), (int)position.Y + (6 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (1 * shabagel), (int)position.Y + (7 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (2 * shabagel), (int)position.Y + (7 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(0), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (3 * shabagel), (int)position.Y + (7 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(2), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (4 * shabagel), (int)position.Y + (7 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(0), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (5 * shabagel), (int)position.Y + (7 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(0), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (6 * shabagel), (int)position.Y + (7 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(2), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (7 * shabagel), (int)position.Y + (7 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (8 * shabagel), (int)position.Y + (7 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(17), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (9 * shabagel), (int)position.Y + (7 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(6), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (10 * shabagel), (int)position.Y + (7 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(8), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (11 * shabagel), (int)position.Y + (7 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(10), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (12 * shabagel), (int)position.Y + (7 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(6), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (13 * shabagel), (int)position.Y + (7 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(17), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (14 * shabagel), (int)position.Y + (7 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (15 * shabagel), (int)position.Y + (7 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(15), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (16 * shabagel), (int)position.Y + (7 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(15), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (17 * shabagel), (int)position.Y + (7 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(16), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (18 * shabagel), (int)position.Y + (7 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (1 * shabagel), (int)position.Y + (8 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (2 * shabagel), (int)position.Y + (8 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(12), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (3 * shabagel), (int)position.Y + (8 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(12), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (4 * shabagel), (int)position.Y + (8 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(12), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (5 * shabagel), (int)position.Y + (8 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(11), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (6 * shabagel), (int)position.Y + (8 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(12), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (7 * shabagel), (int)position.Y + (8 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (8 * shabagel), (int)position.Y + (8 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(3), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (9 * shabagel), (int)position.Y + (8 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(17), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (10 * shabagel), (int)position.Y + (8 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(6), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (11 * shabagel), (int)position.Y + (8 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(6), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (12 * shabagel), (int)position.Y + (8 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(17), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (13 * shabagel), (int)position.Y + (8 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(3), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (14 * shabagel), (int)position.Y + (8 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (15 * shabagel), (int)position.Y + (8 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(4), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (16 * shabagel), (int)position.Y + (8 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(4), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (17 * shabagel), (int)position.Y + (8 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(4), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (18 * shabagel), (int)position.Y + (8 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (2 * shabagel), (int)position.Y + (9 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(24), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (3 * shabagel), (int)position.Y + (9 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(19), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (4 * shabagel), (int)position.Y + (9 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(19), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (5 * shabagel), (int)position.Y + (9 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(18), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (6 * shabagel), (int)position.Y + (9 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(24), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (8 * shabagel), (int)position.Y + (9 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (9 * shabagel), (int)position.Y + (9 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (10 * shabagel), (int)position.Y + (9 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (11 * shabagel), (int)position.Y + (9 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (12 * shabagel), (int)position.Y + (9 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (13 * shabagel), (int)position.Y + (9 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (14 * shabagel), (int)position.Y + (9 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (15 * shabagel), (int)position.Y + (9 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(16), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (16 * shabagel), (int)position.Y + (9 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(15), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (17 * shabagel), (int)position.Y + (9 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(13), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (18 * shabagel), (int)position.Y + (9 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (1 * shabagel), (int)position.Y + (10 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(24), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (2 * shabagel), (int)position.Y + (10 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(22), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (3 * shabagel), (int)position.Y + (10 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(20), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (4 * shabagel), (int)position.Y + (10 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(19), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (5 * shabagel), (int)position.Y + (10 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(24), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (7 * shabagel), (int)position.Y + (10 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (9 * shabagel), (int)position.Y + (10 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (10 * shabagel), (int)position.Y + (10 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(3), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (11 * shabagel), (int)position.Y + (10 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(3), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (12 * shabagel), (int)position.Y + (10 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(2), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (13 * shabagel), (int)position.Y + (10 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(2), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (14 * shabagel), (int)position.Y + (10 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (15 * shabagel), (int)position.Y + (10 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(14), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (16 * shabagel), (int)position.Y + (10 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(13), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (17 * shabagel), (int)position.Y + (10 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(16), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (18 * shabagel), (int)position.Y + (10 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(5), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (1 * shabagel), (int)position.Y + (11 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(24), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (2 * shabagel), (int)position.Y + (11 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(23), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (3 * shabagel), (int)position.Y + (11 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(21), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (4 * shabagel), (int)position.Y + (11 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(21), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (5 * shabagel), (int)position.Y + (11 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(24), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (6 * shabagel), (int)position.Y + (11 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (7 * shabagel), (int)position.Y + (11 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (8 * shabagel), (int)position.Y + (11 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (10 * shabagel), (int)position.Y + (11 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (11 * shabagel), (int)position.Y + (11 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (12 * shabagel), (int)position.Y + (11 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (13 * shabagel), (int)position.Y + (11 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (14 * shabagel), (int)position.Y + (11 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (15 * shabagel), (int)position.Y + (11 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(15), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (16 * shabagel), (int)position.Y + (11 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(16), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (17 * shabagel), (int)position.Y + (11 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(15), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (18 * shabagel), (int)position.Y + (11 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X, (int)position.Y + (12 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(24), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (1 * shabagel), (int)position.Y + (12 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(23), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (2 * shabagel), (int)position.Y + (12 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(20), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (3 * shabagel), (int)position.Y + (12 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(21), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (4 * shabagel), (int)position.Y + (12 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(24), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (15 * shabagel), (int)position.Y + (12 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (16 * shabagel), (int)position.Y + (12 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (17 * shabagel), (int)position.Y + (12 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(1), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X, (int)position.Y + (13 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(24), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (1 * shabagel), (int)position.Y + (13 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(19), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (2 * shabagel), (int)position.Y + (13 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(23), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (3 * shabagel), (int)position.Y + (13 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(23), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (4 * shabagel), (int)position.Y + (13 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(21), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (5 * shabagel), (int)position.Y + (13 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(24), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X, (int)position.Y + (14 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(24), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (1 * shabagel), (int)position.Y + (14 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(20), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (2 * shabagel), (int)position.Y + (14 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(19), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (3 * shabagel), (int)position.Y + (14 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(19), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (4 * shabagel), (int)position.Y + (14 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(19), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (5 * shabagel), (int)position.Y + (14 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(24), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (1 * shabagel), (int)position.Y + (15 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(24), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (2 * shabagel), (int)position.Y + (15 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(24), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (3 * shabagel), (int)position.Y + (15 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(24), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, new Vector2((int)position.X + (4 * shabagel), (int)position.Y + (15 * shabagel2)).RotatedBy(Vloop, player.MountedCenter - Main.screenPosition), sourceRectangle, ThePixel.Colors(24), projectile.rotation, origin, projectile.scale, spriteEffects, 0f);
+            return false;
+        }
         public override void AI()
         {
             Player player = Main.player[projectile.owner];
@@ -1051,24 +1085,58 @@ namespace HellishOnslaught.Items
             }
             projectile.position = player.RotatedRelativePoint(player.MountedCenter, true) - projectile.Size / 2f;
             projectile.rotation = projectile.velocity.ToRotation() + num;
+            if (projectile.rotation >= MathHelper.ToRadians(360f))
+            {
+                projectile.rotation -= MathHelper.ToRadians(360f);
+            }
+            if (projectile.rotation < 0)
+            {
+                projectile.rotation += MathHelper.ToRadians(360f);
+            }
+            projectile.direction = projectile.rotation <= MathHelper.ToRadians(180f) && projectile.rotation >= MathHelper.ToRadians(0f) ? 1 : -1;
             projectile.spriteDirection = projectile.direction;
             projectile.timeLeft = 2;
+            player.ChangeDir(projectile.direction);
             player.heldProj = projectile.whoAmI;
             player.itemTime = 2;
             player.itemAnimation = 2;
-            player.itemRotation = (float)Math.Atan2(projectile.velocity.Y * projectile.direction, projectile.velocity.X * projectile.direction);
+
+            float num1 = 12f;
+            Vector2 vector5 = new Vector2(player.position.X + player.width * 0.5f, player.position.Y + player.height * 0.5f);
+            float f1 = Main.mouseX + Main.screenPosition.X - vector5.X;
+            float f2 = Main.mouseY + Main.screenPosition.Y - vector5.Y;
+            if (player.gravDir == -1.0)
+                f2 = Main.screenPosition.Y + Main.screenHeight - Main.mouseY - vector5.Y;
+            float num8 = (float)Math.Sqrt(f1 * (double)f1 + f2 * (double)f2);
+            float num9;
+            if (float.IsNaN(f1) && float.IsNaN(f2) || f1 == 0.0 && f2 == 0.0)
+            {
+                f1 = player.direction;
+                f2 = 0.0f;
+                num9 = num1;
+            }
+            else
+                num9 = num1 / num8;
+            float SpeedX = f1 * num9;
+            float SpeedY = f2 * num9;
+
+            var Vloop = new Vector2(SpeedX, SpeedY).ToRotation() + (projectile.spriteDirection == 1 ? MathHelper.ToRadians(0f) : MathHelper.ToRadians(180f));
+
+            player.itemRotation = Vloop;
 
             counter++;
 
-            if (counter >= 90)
+            if (counter >= 180)
             {
-                Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 93);
+                Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 93, 1, 1f);
+                Recharge.RechargeRequired = true;
+                player.AddBuff(ModContent.BuffType<Recharge>(), 1, true);
                 chargeLevel = 3;
             }
 
             else if (counter >= 90)
             {
-                Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 101);
+                Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 93);
                 chargeLevel = 2;
             }
 
@@ -1078,9 +1146,9 @@ namespace HellishOnslaught.Items
                 chargeLevel = 1;
             }
 
-            else if (counter >= 30)
+            else if (counter >= 0)
             {
-                Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 13);
+                Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 13, 1, -1f);
                 chargeLevel = 0;
             }
 
@@ -1116,17 +1184,222 @@ namespace HellishOnslaught.Items
                 switch (chargeLevel)
                 {
                     case 0:
+                        Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 89, 1, -1f);
+                        break;
+                    case 1:
                         Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 89);
-                        Projectile.NewProjectile(vector2.X, vector2.Y, SpeedX, SpeedY, ModContent.ProjectileType<Whack>(), projectile.damage, 1f, player.whoAmI);
+                        Projectile.NewProjectile(vector2.X, vector2.Y, SpeedX, SpeedY, ModContent.ProjectileType<Whack>(), projectile.damage / 3, 1f, player.whoAmI);
+                        break;
+                    case 2:
+                        Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 88);
+                        Projectile.NewProjectile(vector2.X, vector2.Y, SpeedX, SpeedY, ModContent.ProjectileType<Thwack>(), projectile.damage / 3, 1f, player.whoAmI, 0f);
+                        break;
+                    case 3:
+                        Recharge.RechargeRequired = false;
+                        Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 88);
+                        Projectile.NewProjectile(vector2.X, vector2.Y, SpeedX, SpeedY, ModContent.ProjectileType<Thwack>(), (projectile.damage) + (counter - 180), 1f, player.whoAmI, 1f);
                         break;
                 }
             }
         }
     }
 
+    internal class Thwack : ModProjectile
+    {
+        public override string Texture => "HellishOnslaught/Projectiles/EHHHH";
+
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault(Red.L() + Green.E() + Blue.M() + White.O() + Teal.N() + Pink.E() + Yellow.Y() + " Beam");
+        }
+        public override void SetDefaults()
+        {
+            projectile.width = 36;
+            projectile.height = 36;
+            projectile.aiStyle = -1;
+            projectile.friendly = true;
+            projectile.hostile = false;
+            projectile.penetrate = -1;
+            projectile.alpha = 255;
+            projectile.timeLeft = 3600;
+            projectile.tileCollide = false;
+        }
+
+        internal const float charge = 5f;
+        public float LaserLength { get { return projectile.localAI[1]; } set { projectile.localAI[1] = value; } }
+        public const float LaserLengthMax = 2000f;
+        int multiplier = 1;
+        int laserLifeTime = 120;
+        public override bool ShouldUpdatePosition()
+        {
+            return true;
+        }
+        public override void DrawBehind(int index, List<int> drawCacheProjsBehindNPCsAndTiles, List<int> drawCacheProjsBehindNPCs, List<int> drawCacheProjsBehindProjectiles, List<int> drawCacheProjsOverWiresUI)
+        {
+            drawCacheProjsBehindProjectiles.Add(index);
+        }
+        float attackCounter = 0;
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(attackCounter);
+        }
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            attackCounter = reader.ReadSingle();
+        }
+
+        float rotationAdd = 0f;
+        public override void AI()
+        {
+            Vector2? vector56 = null;
+            if (projectile.velocity.HasNaNs() || projectile.velocity == Vector2.Zero)
+            {
+                projectile.velocity = -Vector2.UnitY;
+            }
+
+            projectile.position = (Main.player[Main.myPlayer].Center + new Vector2(projectile.velocity.X, projectile.velocity.Y) / 2f) - new Vector2(projectile.width, projectile.height) / 2f;
+
+            if (projectile.velocity.HasNaNs() || projectile.velocity == Vector2.Zero)
+            {
+                projectile.velocity = -Vector2.UnitY;
+            }
+
+            float num820 = 0.5f;
+
+            if (projectile.ai[0] == 1f)
+            {
+                num820 = 1f;
+            }
+
+            ref float reference = ref projectile.localAI[0];
+            ref float reference37 = ref reference;
+            float num74 = reference;
+            reference37 = num74 + 1f;
+            if (projectile.localAI[0] >= 30f)
+            {
+                projectile.Kill();
+                return;
+            }
+            projectile.scale = (float)Math.Sin(projectile.localAI[0] * (float)Math.PI / 180f) * 10f * num820;
+            if (projectile.scale > num820)
+            {
+                projectile.scale = num820;
+            }
+
+            float num823 = projectile.velocity.ToRotation();
+
+            num823 += projectile.ai[1];
+
+            projectile.rotation = num823 - (float)Math.PI / 2f;
+            projectile.velocity = num823.ToRotationVector2();
+            float num824 = 0f;
+            float num825 = 0f;
+            Vector2 samplingPoint = projectile.Center;
+            if (vector56.HasValue)
+            {
+                samplingPoint = vector56.Value;
+            }
+
+            num824 = 3f;
+            num825 = projectile.width;
+
+            float[] array5 = new float[(int)num824];
+            Collision.LaserScan(samplingPoint, projectile.velocity, num825 * projectile.scale, 2400f, array5);
+            float num826 = 0f;
+            for (int num827 = 0; num827 < array5.Length; num827++)
+            {
+                num826 += array5[num827];
+            }
+            num826 /= num824;
+            float amount = 0.5f;
+
+            projectile.localAI[1] = MathHelper.Lerp(projectile.localAI[1], num826, amount);
+
+            Vector2 vector57 = projectile.Center + projectile.velocity * (projectile.localAI[1] - 14f);
+            for (int num828 = 0; num828 < 2; num828++)
+            {
+                float num829 = projectile.velocity.ToRotation() + ((Main.rand.Next(2) == 1) ? (-1f) : 1f) * ((float)Math.PI / 2f);
+                float num830 = (float)Main.rand.NextDouble() * 2f + 2f;
+                Vector2 vector58 = new Vector2((float)Math.Cos(num829) * num830, (float)Math.Sin(num829) * num830);
+                int num831 = Dust.NewDust(vector57, 0, 0, 229, vector58.X, vector58.Y);
+                Main.dust[num831].noGravity = true;
+                Main.dust[num831].scale = 1.7f;
+            }
+            if (Main.rand.Next(5) == 0)
+            {
+                Vector2 value32 = projectile.velocity.RotatedBy(1.5707963705062866) * ((float)Main.rand.NextDouble() - 0.5f) * projectile.width;
+                int num832 = Dust.NewDust(vector57 + value32 - Vector2.One * 4f, 8, 8, 31, 0f, 0f, 100, default(Color), 1.5f);
+                Dust dust119 = Main.dust[num832];
+                Dust dust2 = dust119;
+                dust2.velocity *= 0.5f;
+                Main.dust[num832].velocity.Y = 0f - Math.Abs(Main.dust[num832].velocity.Y);
+            }
+
+            DelegateMethods.v3_1 = new Vector3(0.3f, 0.65f, 0.7f);
+            Utils.PlotTileLine(projectile.Center, projectile.Center + projectile.velocity * projectile.localAI[1], (float)projectile.width * projectile.scale, DelegateMethods.CastLight);
+        }
+
+
+        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
+        {
+            float collisionPoint = 0f;
+            return (Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), projectile.Center, projectile.Center + projectile.velocity * projectile.localAI[1], projHitbox.Width, ref collisionPoint));
+        }
+        public override bool? CanCutTiles()
+        {
+            DelegateMethods.tilecut_0 = Terraria.Enums.TileCuttingContext.AttackProjectile;
+            Utils.PlotTileLine(projectile.Center, projectile.Center + projectile.velocity * projectile.localAI[1], (float)projectile.width * projectile.scale * 2, new Utils.PerLinePoint(CutTilesAndBreakWalls));
+            return true;
+        }
+
+        private bool CutTilesAndBreakWalls(int x, int y)
+        {
+            return DelegateMethods.CutTiles(x, y);
+        }
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            if (projectile.velocity == Vector2.Zero)
+            {
+                return false;
+            }
+            Texture2D texture2D18 = Main.projectileTexture[projectile.type];
+            Texture2D texture2D19 = mod.GetTexture("Projectiles/AHHHH");
+            Texture2D texture2D20 = mod.GetTexture("Projectiles/UHHHH");
+            float num203 = projectile.localAI[1];
+            Microsoft.Xna.Framework.Color color40 = new Microsoft.Xna.Framework.Color(255, 255, 255, 255);
+            spriteBatch.Draw(texture2D18, projectile.Center - Main.screenPosition, null, color40, projectile.rotation, texture2D18.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
+            num203 -= (float)(texture2D18.Height / 2 + texture2D20.Height) * projectile.scale;
+            Vector2 center3 = projectile.Center;
+            center3 += projectile.velocity * projectile.scale * texture2D18.Height / 2f;
+            if (num203 > 0f)
+            {
+                float num204 = 0f;
+                Microsoft.Xna.Framework.Rectangle value21 = new Microsoft.Xna.Framework.Rectangle(0, 16 * (projectile.timeLeft / 3 % 5), texture2D19.Width, 16);
+                while (num204 + 1f < num203)
+                {
+                    if (num203 - num204 < (float)value21.Height)
+                    {
+                        value21.Height = (int)(num203 - num204);
+                    }
+                    spriteBatch.Draw(texture2D19, center3 - Main.screenPosition, value21, color40, projectile.rotation, new Vector2(value21.Width / 2, 0f), projectile.scale, SpriteEffects.None, 0f);
+                    num204 += (float)value21.Height * projectile.scale;
+                    center3 += projectile.velocity * value21.Height * projectile.scale;
+                    value21.Y += 16;
+                    if (value21.Y + value21.Height > texture2D19.Height)
+                    {
+                        value21.Y = 0;
+                    }
+                }
+            }
+            spriteBatch.Draw(texture2D20, center3 - Main.screenPosition, null, color40, projectile.rotation, texture2D20.Frame().Top(), projectile.scale, SpriteEffects.None, 0f);
+            return false;
+        }
+    }
+
     internal class Whack : ModProjectile
     {
-        public override string Texture => "HellishOnslaught/Projectiles/UHHHH";
+        public override string Texture => "HellishOnslaught/Projectiles/Ohhhh";
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault(Red.L() + Green.E() + Blue.M() + White.O() + Teal.N() + Pink.E() + Yellow.Y() + " Shot");

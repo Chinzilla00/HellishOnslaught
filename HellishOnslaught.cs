@@ -21,7 +21,7 @@ namespace HellishOnslaught
     {
         public static ModHotKey ClanEmblem;
 
-        internal static HellishOnslaught instance;
+        internal HellishOnslaught instance;
 		
         public HellishOnslaught()
         {
@@ -38,7 +38,7 @@ namespace HellishOnslaught
         {
             if (Subworld.IsActive<QuarryWorldFile>())
             {
-                music = GetSoundSlot(SoundType.Music, "Music/IntoTheMineshaft");
+                music = instance.GetSoundSlot(SoundType.Music, "HellishOnslaught/Music/IntoTheMineshaft");
                 priority = MusicPriority.Environment;
             }
         }

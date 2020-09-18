@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -15,6 +16,7 @@ namespace HellishOnslaught
     class PlayerFile : ModPlayer
     {
         public bool Crude;
+        public bool Recharge;
         private bool useQuarry;
         public static string EEEEE(bool a, bool b, bool c, bool d, bool e)
         {
@@ -28,8 +30,30 @@ namespace HellishOnslaught
             }
         }
 
+        public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        {
+            if (Recharge && damage == 10.0 && hitDirection == 0 && damageSource.SourceOtherIndex == 8)
+            {
+                damageSource = PlayerDeathReason.ByCustomReason(player.name + " overloaded painfully.");
+            }
+            return true;
+        }
+
         public override void UpdateBadLifeRegen()
         {
+            if (Recharge)
+            {
+                if (player.lifeRegen > 0)
+                {
+                    player.lifeRegen = 0;
+                }
+                player.lifeRegenTime = 0;
+                player.lifeRegen -= 100;
+                if (player.statLife <= 0 && player.whoAmI == Main.myPlayer)
+                {
+                    player.KillMe(PlayerDeathReason.ByCustomReason(" overloaded painfully."), 10.0, 0);
+                }
+            }
             if (Crude)
             {
                 if (player.lifeRegen > 0)

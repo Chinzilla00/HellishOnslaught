@@ -90,22 +90,22 @@ namespace HellishOnslaught.LiquidAPI.Items
 
             if (liquid.Type == 0)
             {
-                Texture2D liquidTexture = HellishOnslaught.instance.GetTexture("LiquidAPI/Texture/Bucket/Water_Bucket");
+                Texture2D liquidTexture = ModContent.GetTexture("HellishOnslaught/LiquidAPI/Texture/Bucket/Water_Bucket");
                 spriteBatch.Draw(liquidTexture, position, null, Color.White, 0f, origin, new Vector2(scale), SpriteEffects.None, 0);
             }
             if (liquid.Type == 1)
             {
-                Texture2D liquidTexture = HellishOnslaught.instance.GetTexture("LiquidAPI/Texture/Bucket/Lava_Bucket");
+                Texture2D liquidTexture = ModContent.GetTexture("HellishOnslaught/LiquidAPI/Texture/Bucket/Lava_Bucket");
                 spriteBatch.Draw(liquidTexture, position, null, Color.White, 0f, origin, new Vector2(scale), SpriteEffects.None, 0);
             }
             if (liquid.Type == 2)
             {
-                Texture2D liquidTexture = HellishOnslaught.instance.GetTexture("LiquidAPI/Texture/Bucket/Honey_Bucket");
+                Texture2D liquidTexture = ModContent.GetTexture("HellishOnslaught/LiquidAPI/Texture/Bucket/Honey_Bucket");
                 spriteBatch.Draw(liquidTexture, position, null, Color.White, 0f, origin, new Vector2(scale), SpriteEffects.None, 0);
             }
             if (liquid.Type == 3)
             {
-                Texture2D liquidTexture = HellishOnslaught.instance.GetTexture("LiquidAPI/Texture/Bucket/Oil_Bucket");
+                Texture2D liquidTexture = ModContent.GetTexture("HellishOnslaught/LiquidAPI/Texture/Bucket/Oil_Bucket");
                 spriteBatch.Draw(liquidTexture, position, null, Color.White, 0f, origin, new Vector2(scale), SpriteEffects.None, 0);
             }
         }
@@ -114,22 +114,22 @@ namespace HellishOnslaught.LiquidAPI.Items
         {
             if (liquid.Type == 0)
             {
-                Texture2D liquidTexture = HellishOnslaught.instance.GetTexture("LiquidAPI/Texture/Bucket/Water_Bucket");
+                Texture2D liquidTexture = ModContent.GetTexture("HellishOnslaught/LiquidAPI/Texture/Bucket/Water_Bucket");
                 spriteBatch.Draw(liquidTexture, item.position, Color.White);
             }
             if (liquid.Type == 1)
             {
-                Texture2D liquidTexture = HellishOnslaught.instance.GetTexture("LiquidAPI/Texture/Bucket/Lava_Bucket");
+                Texture2D liquidTexture = ModContent.GetTexture("HellishOnslaught/LiquidAPI/Texture/Bucket/Lava_Bucket");
                 spriteBatch.Draw(liquidTexture, item.position, Color.White);
             }
             if (liquid.Type == 2)
             {
-                Texture2D liquidTexture = HellishOnslaught.instance.GetTexture("LiquidAPI/Texture/Bucket/Honey_Bucket");
+                Texture2D liquidTexture = ModContent.GetTexture("HellishOnslaught/LiquidAPI/Texture/Bucket/Honey_Bucket");
                 spriteBatch.Draw(liquidTexture, item.position, Color.White);
             }
             if (liquid.Type == 3)
             {
-                Texture2D liquidTexture = HellishOnslaught.instance.GetTexture("LiquidAPI/Texture/Bucket/Oil_Bucket");
+                Texture2D liquidTexture = ModContent.GetTexture("HellishOnslaught/LiquidAPI/Texture/Bucket/Oil_Bucket");
                 spriteBatch.Draw(liquidTexture, item.position, Color.White);
             }
         }

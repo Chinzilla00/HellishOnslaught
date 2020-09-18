@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace HellishOnslaught.LiquidAPI.Hooks
 {
@@ -11,7 +12,8 @@ namespace HellishOnslaught.LiquidAPI.Hooks
 
         private static void LiquidOnLavaCheck(On.Terraria.Liquid.orig_LavaCheck orig, int x, int y)
         {
-            NewModLiquidCheck(x, y, LiquidRegistry.GetLiquid(HellishOnslaught.instance, "Lava"));
+            Mod mod = ModLoader.GetMod("HellishOnslaught");
+            NewModLiquidCheck(x, y, LiquidRegistry.GetLiquid(mod, "Lava"));
         }
 
         internal static void NewModLiquidCheck(int x, int y, ModLiquid targetType)
@@ -202,7 +204,8 @@ namespace HellishOnslaught.LiquidAPI.Hooks
 
         private static void LiquidOnHoneyCheck(On.Terraria.Liquid.orig_HoneyCheck orig, int x, int y)
         {
-            NewModLiquidCheck(x, y, LiquidRegistry.GetLiquid(HellishOnslaught.instance, "Honey"));
+            Mod mod = ModLoader.GetMod("HellishOnslaught");
+            NewModLiquidCheck(x, y, LiquidRegistry.GetLiquid(mod, "Honey"));
         }
 
         /*
