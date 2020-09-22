@@ -30,6 +30,11 @@ namespace HellishOnslaught
             }
         }
 
+        public static int powerint()
+        {
+            return 1;
+        }
+
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
             if (Recharge && damage == 10.0 && hitDirection == 0 && damageSource.SourceOtherIndex == 8)

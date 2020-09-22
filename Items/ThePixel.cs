@@ -20,20 +20,13 @@ namespace HellishOnslaught.Items
         {
             DisplayName.SetDefault(WorldFile.CreeperAwMan ? WorldFile.Copypaste() : "The Pixel"); //The Best Pixel is the Ultimate Pixel.
         }
-        public override Color? GetAlpha(Color lightColor)
-        {
-            if (!WorldFile.CreeperAwMan)
-            {
-                return Color.Black;
-            }
-            return Color.Transparent;
-        }
         public override void SetDefaults()
         {
             item.width = 2;
             item.height = 2;
             item.maxStack = 1;
             item.value = 0;
+            item.rare = ItemRarityID.Cyan;
         }
 
 
@@ -101,6 +94,14 @@ namespace HellishOnslaught.Items
 
 
 
+        public override Color? GetAlpha(Color lightColor)
+        {
+            if (!WorldFile.CreeperAwMan)
+            {
+                return Color.Black;
+            }
+            return Color.Transparent;
+        }
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             if (WorldFile.CreeperAwMan)
@@ -112,11 +113,11 @@ namespace HellishOnslaught.Items
                 item.useStyle = ItemUseStyleID.HoldingOut;
                 item.noMelee = true;
                 item.damage = 9001;
-                item.magic = true;
                 item.useTime = 30;
                 item.useAnimation = 30;
                 item.noUseGraphic = true;
                 item.channel = true;
+                item.rare = ItemRarityID.Cyan;
                 item.shoot = ModContent.ProjectileType<BallpeenProjectile>();
 
                 Texture2D texture = Main.itemTexture[item.type];
@@ -566,7 +567,7 @@ namespace HellishOnslaught.Items
             }
         }
 
-        public override void ModifyTooltips(List<TooltipLine> tooltips) { if (WorldFile.CreeperAwMan) { var A = new TooltipLine(mod, "LEMONEYBOMB", Red.L()); var B = new TooltipLine(mod, "LEMONEYBOMB", Green.E()); var C = new TooltipLine(mod, "LEMONEYBOMB", Blue.M()); var D = new TooltipLine(mod, "LEMONEYBOMB", White.O()); var E = new TooltipLine(mod, "LEMONEYBOMB", Teal.N()); var F = new TooltipLine(mod, "LEMONEYBOMB", Pink.E()); var G = new TooltipLine(mod, "LEMONEYBOMB", Yellow.Y()); var H = new TooltipLine(mod, "LEMONEYBOMB", LightsReach.Bomb()); foreach (TooltipLine line in tooltips) { if (line.mod == "Terraria" && line.Name == "ItemName") { line.text = "[c/FF0000:" + A.text + "][c/00FF00:" + B.text + "][c/0000FF:" + C.text + "][c/000000:" + D.text + "][c/00FFFF:" + E.text + "][c/FF00FF:" + F.text + "][c/FFFF00:" + G.text + "][c/FFFFFF:" + H.text + "]"; }} tooltips.Add(new TooltipLine(mod, "Bread", QuarryWorldFile.MoreBread(false, false, false, false, false) + "\nYou Can Check.\n" + PlayerFile.EEEEE(true, true, true, true, true))); }}
+        public override void ModifyTooltips(List<TooltipLine> tooltips) { if (WorldFile.CreeperAwMan) { var A = new TooltipLine(mod, "LEMONEYBOMB", Red.L()); var B = new TooltipLine(mod, "LEMONEYBOMB", Green.E()); var C = new TooltipLine(mod, "LEMONEYBOMB", Blue.M()); var D = new TooltipLine(mod, "LEMONEYBOMB", White.O()); var E = new TooltipLine(mod, "LEMONEYBOMB", Teal.N()); var F = new TooltipLine(mod, "LEMONEYBOMB", Pink.E()); var G = new TooltipLine(mod, "LEMONEYBOMB", Yellow.Y()); var H = new TooltipLine(mod, "LEMONEYBOMB", LightsReach.Bomb()); foreach (TooltipLine line in tooltips) { if (line.mod == "Terraria" && line.Name == "ItemName") { line.text = "[c/FF0000:" + A.text + "][c/00FF00:" + B.text + "][c/0000FF:" + C.text + "][c/000000:" + D.text + "][c/00FFFF:" + E.text + "][c/FF00FF:" + F.text + "][c/FFFF00:" + G.text + "][c/FFFFFF:" + H.text + "]"; } if (line.mod == "Terraria" && line.Name == "ItemDamage") { var DevColor = Color.Lerp(Color.LightGreen, Color.Orange, (float)(Math.Abs(Math.Sin(Math.Abs(Main.GameUpdateCount * 0.02f))))).Hex3(); line.text = "[c/" + DevColor + ":" + item.damage + " Undefined Damage]"; }} tooltips.Add(new TooltipLine(mod, "Bread", QuarryWorldFile.MoreBread(false, false, false, false, false) + "\nYou Can Check.\n" + PlayerFile.EEEEE(true, true, true, true, true))); var Developer = new TooltipLine(mod, "Dev", Blundergat.NoSus()); Developer.overrideColor = Color.Lerp(Color.LimeGreen, Color.Orange, (float)(Math.Abs(Math.Sin(Math.Abs(Main.GameUpdateCount * 0.02f))))); tooltips.Add(Developer); tooltips.Add(new TooltipLine(mod, "Cheater", "Wait a second-... Another?")); }}
 
         public static Color Colors(int type)
         {

@@ -15,9 +15,7 @@ namespace HellishOnslaught
     class HellishOnslaught : Mod
     {
         public static ModHotKey ClanEmblem;
-
         internal HellishOnslaught instance;
-		
         public HellishOnslaught()
         {
 	        Properties = new ModProperties()
