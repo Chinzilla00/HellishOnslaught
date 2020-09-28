@@ -9,13 +9,22 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
+using Terraria.UI;
+using HellishOnslaught.UI;
+using Microsoft.Xna.Framework;
+using HellishOnslaught.Items;
 
 namespace HellishOnslaught
 {
     class HellishOnslaught : Mod
     {
         public static ModHotKey ClanEmblem;
-        internal HellishOnslaught instance;
+        internal static HellishOnslaught instance;
+        internal UserInterface _legacyshop;
+
+        internal ButtonUI Buttoney;
+
+        private GameTime gamertime;
         public HellishOnslaught()
         {
 	        Properties = new ModProperties()
@@ -31,7 +40,7 @@ namespace HellishOnslaught
         {
             if (Subworld.IsActive<QuarryWorldFile>())
             {
-                music = instance.GetSoundSlot(SoundType.Music, "HellishOnslaught/Music/IntoTheMineshaft");
+                music = GetSoundSlot(SoundType.Music, "Sounds/Music/IntoTheMineshaft");
                 priority = MusicPriority.Environment;
             }
         }
@@ -41,10 +50,56 @@ namespace HellishOnslaught
             instance = this;
             Filters.Scene["HellishOnslaught:Quarry"] = new Filter(new ScreenShaderData("FilterTower").UseColor(0.0f, 0.0f, 0.0f).UseOpacity(0.85f), EffectPriority.High);
             ClanEmblem = RegisterHotKey("Clan Active Ability", "M");
+            if (!Main.dedServ)
+            {
+                _legacyshop = new UserInterface();
+
+                Buttoney = new ButtonUI();
+                Buttoney.Activate();
+            }
         }
+
         public override void Unload()
         {
             ClanEmblem = null;
+        }
+
+        public override void UpdateUI(GameTime gameTime)
+        {
+            gamertime = gameTime;
+            if (_legacyshop?.CurrentState != null)
+            {
+                _legacyshop.Update(gameTime);
+            }
+        }
+
+        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+        {
+            int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
+            if (mouseTextIndex != -1)
+            {
+                layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
+                    "HellishOnslaught: LegacyShop",
+                    delegate
+                    {
+                        if (gamertime != null && _legacyshop?.CurrentState != null)
+                        {
+                            _legacyshop.Draw(Main.spriteBatch, gamertime);
+                        }
+                        return true;
+                    },
+                InterfaceScaleType.UI));
+            }
+        }
+
+        internal void ShowMyUI()
+        {
+            _legacyshop?.SetState(Buttoney);
+        }
+
+        internal void HideMyUI()
+        {
+            _legacyshop?.SetState(null);
         }
     }
 }

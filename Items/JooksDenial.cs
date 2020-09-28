@@ -66,11 +66,19 @@ namespace HellishOnslaught.Items
                     Color color12 = Color.Lerp(Color.Red, Color.Purple, (float)(Math.Abs(Math.Sin(Math.Abs(Main.GameUpdateCount * 0.02f) + 0.10))));
                     line.text = "[c/" + color0.Hex3() + ":J]" + "[c/" + color1.Hex3() + ":o]" + "[c/" + color2.Hex3() + ":o]" + "[c/" + color3.Hex3() + ":k]" + "[c/" + color4.Hex3() + ":']" + "[c/" + color5.Hex3() + ":s]" + "[c/" + color6.Hex3() + ": ]" + "[c/" + color7.Hex3() + ":D]" + "[c/" + color8.Hex3() + ":e]" + "[c/" + color9.Hex3() + ":n]" + "[c/" + color10.Hex3() + ":i]" + "[c/" + color11.Hex3() + ":a]" + "[c/" + color12.Hex3() + ":l]";
                 }
-                if (line.mod == "Terraria" && line.Name == "ItemDamage")
+                if (line.mod == "Terraria" && line.Name == "Damage")
                 {
                     var DevColor = Color.Lerp(Color.LightGreen, Color.Orange, (float)(Math.Abs(Math.Sin(Math.Abs(Main.GameUpdateCount * 0.02f))))).Hex3();
                     line.text = "[c/" + DevColor + ":" + item.damage + "] Melee Damage";
                 }
+            }
+        }
+        public override void OnCraft(Recipe recipe)
+        {
+            Player player = Main.LocalPlayer;
+            if (Main.rand.Next(2) == 0)
+            {
+                Item.NewItem(new Rectangle((int)player.Center.X, (int)player.Center.Y, player.width, player.height), ModContent.ItemType<DeveloperCore>());
             }
         }
     }

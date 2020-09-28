@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HellishOnslaught.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,11 +27,14 @@ namespace HellishOnslaught.Items
             item.rare = ItemRarityID.Cyan;
             item.useAnimation = 20;
             item.useTime = 20;
-            item.useStyle = ItemUseStyleID.HoldingUp;
+            item.useStyle = ItemUseStyleID.HoldingOut;
+            item.noUseGraphic = true;
         }
-        /*public override bool UseItem(Player player)
+        public override bool UseItem(Player player)
         {
+            item.stack--;
+            HellishOnslaught.instance.ShowMyUI();
             return true;
-        }*/
+        }
     }
 }

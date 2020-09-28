@@ -18,6 +18,10 @@ namespace HellishOnslaught
         public bool Crude;
         public bool Recharge;
         private bool useQuarry;
+        public bool Leg1 = false;
+        public static int Leg1Count = 0;
+        public static int Leg1Max = 9999;
+        private int CurrentDif = 0;
         public static string EEEEE(bool a, bool b, bool c, bool d, bool e)
         {
             if (a && b && c && d && e)
@@ -40,6 +44,7 @@ namespace HellishOnslaught
             if (Recharge && damage == 10.0 && hitDirection == 0 && damageSource.SourceOtherIndex == 8)
             {
                 damageSource = PlayerDeathReason.ByCustomReason(player.name + " overloaded painfully.");
+                Recharge = false;
             }
             return true;
         }
@@ -137,6 +142,30 @@ namespace HellishOnslaught
 		{
             useQuarry = Subworld.IsActive<QuarryWorldFile>() && !player.HasBuff(ModContent.BuffType<LightsReach>());
             player.ManageSpecialBiomeVisuals("HellishOnslaught:Quarry", useQuarry);
+        }
+
+        public override void Initialize()
+        {
+            DateTime now = TimeZone.CurrentTimeZone.ToUniversalTime(DateTime.Now);
+            CurrentDif = now.Day;
+        }
+
+        public override void PostUpdate()
+        {
+            DateTime now = TimeZone.CurrentTimeZone.ToUniversalTime(DateTime.Now);
+            int days = now.Day;
+            if (Leg1Count > Leg1Max)
+            {
+                Leg1Count = Leg1Max;
+            }
+            if (Leg1 && days != CurrentDif)
+            {
+                Leg1Count++;
+            }
+            if (days != CurrentDif)
+            {
+                CurrentDif = now.Day;
+            }
         }
     }
 }

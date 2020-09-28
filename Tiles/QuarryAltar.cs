@@ -1,4 +1,5 @@
-﻿using HellishOnslaught.TheQuarry;
+﻿using HellishOnslaught.NPCs.Bosses.LostFragmentBlue;
+using HellishOnslaught.TheQuarry;
 using Microsoft.Xna.Framework;
 using SubworldLibrary;
 using System;
@@ -45,10 +46,27 @@ namespace HellishOnslaught.Tiles
         public override bool NewRightClick(int i, int j)
         {
             Player player = Main.LocalPlayer;
-            if (player.HeldItem.type == ItemID.Bone && player.HeldItem.stack >= 100)
+            if (player.HeldItem.type == ItemID.Bone && player.HeldItem.stack >= 100 && (WorldFile.LostFragmentDownedBlue || WorldFile.LostFragmentDownedPink || WorldFile.LostFragmentDownedGreen))
             {
                 player.HeldItem.stack -= 100;
                 Subworld.Enter<QuarryWorldFile>();
+            }
+            if ((player.HeldItem.type == ItemID.TissueSample || player.HeldItem.type == ItemID.ShadowScale) && player.HeldItem.stack >= 20)
+            {
+                player.HeldItem.stack -= 20;
+                int spawn = Main.rand.Next(3);
+                if (spawn == 0 && !NPC.AnyNPCs(ModContent.NPCType<LostFragmentBlue>()))
+                {
+                    NPC.NewNPC((int)player.Center.X, (int)player.Center.Y, ModContent.NPCType<LostFragmentBlue>());
+                }
+                /*if (spawn == 1 && !NPC.AnyNPCs(ModContent.NPCType<LostFragmentPink>()))
+                {
+                    NPC.NewNPC((int)player.Center.X, (int)player.Center.Y, ModContent.NPCType<LostFragmentPink>());
+                }*/
+                /*if (spawn == 2 && !NPC.AnyNPCs(ModContent.NPCType<LostFragmentGreen>()))
+                {
+                    NPC.NewNPC((int)player.Center.X, (int)player.Center.Y, ModContent.NPCType<LostFragmentGreen>());
+                }*/
             }
             return true;
         }

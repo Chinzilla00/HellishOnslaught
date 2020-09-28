@@ -36,7 +36,7 @@ namespace HellishOnslaught.Items
             item.noMelee = true;
             item.useAmmo = AmmoID.Bullet;
         }
-        public override void ModifyTooltips(List<TooltipLine> tooltips) { var Developer = new TooltipLine(mod, "Dev", NoSus()); Developer.overrideColor = Color.Lerp(Color.LimeGreen, Color.Orange, (float)(Math.Abs(Math.Sin(Math.Abs(Main.GameUpdateCount * 0.02f))))); tooltips.Add(Developer); foreach (TooltipLine line in tooltips) { if (line.mod == "Terraria" && line.Name == "ItemName") { line.overrideColor = Color.Blue; } if (line.mod == "Terraria" && line.Name == "ItemDamage") { var DevColor = Color.Lerp(Color.LightGreen, Color.Orange, (float)(Math.Abs(Math.Sin(Math.Abs(Main.GameUpdateCount * 0.02f))))).Hex3(); line.text = "[c/" + DevColor + ":" + item.damage + "] Ranged Damage"; }}}
+        public override void ModifyTooltips(List<TooltipLine> tooltips) { var Developer = new TooltipLine(mod, "Dev", NoSus()); Developer.overrideColor = Color.Lerp(Color.LimeGreen, Color.Orange, (float)(Math.Abs(Math.Sin(Math.Abs(Main.GameUpdateCount * 0.02f))))); tooltips.Add(Developer); foreach (TooltipLine line in tooltips) { if (line.mod == "Terraria" && line.Name == "ItemName") { line.overrideColor = Color.Blue; } if (line.mod == "Terraria" && line.Name == "Damage") { var DevColor = Color.Lerp(Color.LightGreen, Color.Orange, (float)(Math.Abs(Math.Sin(Math.Abs(Main.GameUpdateCount * 0.02f))))).Hex3(); line.text = "[c/" + DevColor + ":" + item.damage + "] Ranged Damage"; }}}
         public static string NoSus() { return "Developer: TailstheFox92"; }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
@@ -58,6 +58,14 @@ namespace HellishOnslaught.Items
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(10, 0);
+        }
+        public override void OnCraft(Recipe recipe)
+        {
+            Player player = Main.LocalPlayer;
+            if (Main.rand.Next(2) == 0)
+            {
+                Item.NewItem(new Rectangle((int)player.Center.X, (int)player.Center.Y, player.width, player.height), ModContent.ItemType<DeveloperCore>());
+            }
         }
     }
 }

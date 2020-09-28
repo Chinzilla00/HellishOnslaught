@@ -3,6 +3,7 @@ using HellishOnslaught.Items;
 using HellishOnslaught.TheQuarry;
 using HellishOnslaught.Tiles;
 using SubworldLibrary;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Generation;
@@ -14,9 +15,12 @@ namespace HellishOnslaught
 {
     class WorldFile : ModWorld
     {
+        public static int BlueTiles = 0;
+        public static int PinkTiles = 0;
+        public static int GreenTiles = 0;
         public static bool LostFragmentDownedBlue = false;
-        public static bool LostFragmentDownedGreen = false;
         public static bool LostFragmentDownedPink = false;
+        public static bool LostFragmentDownedGreen = false;
         public static bool CreeperAwMan = false;
         public static bool TickTickBoom = false;
 
@@ -88,6 +92,13 @@ namespace HellishOnslaught
                     }
                 }));
             }
+        }
+
+        public override void TileCountsAvailable(int[] tileCounts)
+        {
+            BlueTiles = tileCounts[TileID.BlueDungeonBrick];
+            PinkTiles = tileCounts[TileID.PinkDungeonBrick];
+            GreenTiles = tileCounts[TileID.GreenDungeonBrick];
         }
         public static string Bomb()
         {
