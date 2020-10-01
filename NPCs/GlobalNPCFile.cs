@@ -1,5 +1,7 @@
 ﻿using HellishOnslaught.Projectiles;
+using HellishOnslaught.TheQuarry;
 using Microsoft.Xna.Framework;
+using SubworldLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -121,6 +123,13 @@ namespace HellishOnslaught.NPCs
             //Here!
             //A Star!
             return " Star";
+        }
+        public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+        {
+            if (Subworld.AnyActive(ModLoader.GetMod("HellishOnslaught")))
+            {
+                pool.Clear();
+            }
         }
     }
 }

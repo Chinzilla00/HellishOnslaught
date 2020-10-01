@@ -21,8 +21,10 @@ namespace HellishOnslaught
         public static ModHotKey ClanEmblem;
         internal static HellishOnslaught instance;
         internal UserInterface _legacyshop;
+        internal UserInterface _minigame;
 
         internal ButtonUI Buttoney;
+        internal MinigameUI Minigame;
 
         private GameTime gamertime;
         public HellishOnslaught()
@@ -56,6 +58,11 @@ namespace HellishOnslaught
 
                 Buttoney = new ButtonUI();
                 Buttoney.Activate();
+
+                _minigame = new UserInterface();
+
+                Minigame = new MinigameUI();
+                Minigame.Activate();
             }
         }
 
@@ -90,6 +97,20 @@ namespace HellishOnslaught
                     },
                 InterfaceScaleType.UI));
             }
+            if (mouseTextIndex != -2)
+            {
+                layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
+                    "HellishOnslaught: MinigameUI",
+                    delegate
+                    {
+                        if (gamertime != null && _minigame?.CurrentState != null)
+                        {
+                            _minigame.Draw(Main.spriteBatch, gamertime);
+                        }
+                        return true;
+                    },
+                InterfaceScaleType.UI));
+            }
         }
 
         internal void ShowMyUI()
@@ -100,6 +121,15 @@ namespace HellishOnslaught
         internal void HideMyUI()
         {
             _legacyshop?.SetState(null);
+        }
+        internal void MinigameShow()
+        {
+            _minigame?.SetState(Minigame);
+        }
+
+        internal void MinigameHide()
+        {
+            _minigame?.SetState(null);
         }
     }
 }

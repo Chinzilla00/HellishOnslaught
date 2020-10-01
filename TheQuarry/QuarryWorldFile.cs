@@ -22,8 +22,8 @@ namespace HellishOnslaught.TheQuarry
         public override ModWorld modWorld => ModContent.GetInstance<WorldFile>();
         public override bool noWorldUpdate => false;
         public override bool saveSubworld => false;
-        //public override UserInterface loadingUI => base.loadingUI;
-        //public override UIState loadingUIState => base.loadingUIState;
+        public override UserInterface loadingUI => HellishOnslaught.instance._minigame;
+        public override UIState loadingUIState => HellishOnslaught.instance.Minigame;
         public override bool disablePlayerSaving => true;
         public override bool saveModData => true;
         public static bool FirstTime = true;

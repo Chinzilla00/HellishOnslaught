@@ -63,10 +63,10 @@ namespace HellishOnslaught.Tiles
                 {
                     NPC.NewNPC((int)player.Center.X, (int)player.Center.Y, ModContent.NPCType<LostFragmentPink>());
                 }*/
-                /*if (spawn == 2 && !NPC.AnyNPCs(ModContent.NPCType<LostFragmentGreen>()))
+                if (spawn == 2 && !NPC.AnyNPCs(ModContent.NPCType<LostFragmentGreen>()))
                 {
                     NPC.NewNPC((int)player.Center.X, (int)player.Center.Y, ModContent.NPCType<LostFragmentGreen>());
-                }*/
+                }
             }
             return true;
         }
